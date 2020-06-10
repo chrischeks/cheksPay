@@ -1,0 +1,111 @@
+<div class="container-fluid">
+  <!-- Begin Page Content -->
+
+
+  <!-- Page Heading -->
+  <div class="mt-4 d-flex justify-content-around">
+    <span style="margin-left: 9.5rem;"><a class="" routerLink="/pages/home" [queryParams]="{bills: true}">Back</a></span>
+
+    <span class="font-weight-bold">AIRTIME</span>
+    <span style="margin-right: 9.5rem;"><a class="" routerLink="/pages/home">Back to menu</a></span>
+
+  </div>
+
+  <!-- Content Row -->
+  <!-- <form id="msform" [formGroup]="airtimeForm"> -->
+    <div class="setting-form text-left">
+
+      <div class="form-group row flex-center">
+
+        <div class="form-card">
+
+          <form id="msform" [formGroup]="airtimeForm">
+            <div class="setting-form text-left">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Network
+              </label>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="container">
+                      <img src="../../../../assets/img/MTN Logo.svg" />
+                      <mdb-checkbox formControlName="mtn" (change)="checkChange($event, 1)"></mdb-checkbox>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="container">
+                      <img src="../../../../assets/img/9mobile Logo.svg" />
+                      <mdb-checkbox formControlName="etisalat" (change)="checkChange($event, 2)"></mdb-checkbox>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="container">
+                      <img src="../../../../assets/img/Airtel Nigeria Logo.svg" />
+                      <mdb-checkbox formControlName="airtel" (change)="checkChange($event, 3)"></mdb-checkbox>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="container">
+                      <img src="../../../../assets/img/Globacom Limited Logo.svg" />
+                      <mdb-checkbox formControlName="glo" (change)="checkChange($event, 4)"></mdb-checkbox>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          
+
+            <div class="setting-form text-left mt-4">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Phone Number
+              </label>
+              <input type="number" formControlName="phone" class="browser-default" placeholder="08012345678">
+              <div *ngIf="!!airtimeForm.controls.phone.touched && !!airtimeForm.controls.phone.invalid">
+                <div class="validation-error">11-digit phone number is required
+                </div>
+              </div>
+
+            </div>
+
+            <div class="setting-form text-left">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Amount (in naira)
+              </label>
+              <input type="number" placeholder="500" formControlName="amount" class="browser-default">
+              <div *ngIf="!!airtimeForm.controls.amount.touched && !!airtimeForm.controls.amount.invalid">
+                <div class="validation-error">Amount is required
+                </div>
+              </div>
+
+            </div>
+
+
+            <div>
+              <button (click)="onSubmit()" [disabled]="airtimeForm.invalid || isLoading || !isChecked" mdbBtn block="true"
+                class="my-4 customButton" type="submit">Confirm</button>
+            </div>
+
+            <!-- <div>
+              <button [disabled]=true mdbBtn block="true" class="my-4 customButton" type="submit">Confirm</button>
+            </div> -->
+
+
+          </form>
+        </div>
+      </div>
+
+
+    </div>

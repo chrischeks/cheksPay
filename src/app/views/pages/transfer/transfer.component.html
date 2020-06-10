@@ -1,0 +1,102 @@
+<div class="container-fluid">
+  <!-- Begin Page Content -->
+
+
+  <!-- Page Heading -->
+  <div class="mt-4">
+    <span><a class="menuColor d-sm-flex justify-content-end" routerLink="/pages/home">Back to menu</a></span>
+    <span class="bill d-sm-flex justify-content-center">TRANSFER</span>
+  </div>
+
+  <!-- Content Row -->
+  <!-- <form id="msform" [formGroup]="transferForm"> -->
+    <div class="setting-form text-left">
+
+      <div class="form-group row flex-center">
+
+        <div class="form-card">
+
+          <form id="msform" [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+              
+           
+
+            <div class="setting-form text-left">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Bank Name
+              </label>
+              <select class="browser-default custom-select" formControlName="account_bank" (click)="clearAccNum()">
+                <option disabled>Select Your Bank</option>
+                <option *ngFor="let option of bankSelect"  [value]=option.value>
+                  {{option.label}}
+                </option>
+              </select>
+              <!-- <input type="number" placeholder="500" formControlName="account_bank" class="browser-default"> -->
+              <div *ngIf="!!transferForm.controls.account_bank.touched && !!transferForm.controls.account_bank.invalid">
+                <div class="validation-error">Fill in bank name
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-form text-left mt-4">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Account Number
+              </label>
+              <input type="tel" formControlName="account_number" class="browser-default" placeholder="0123456789" (keyup)="!!transferForm.controls.account_number.valid && !!transferForm.controls.account_bank.valid? resolveAccount(): ''">
+              <div *ngIf="!!transferForm.controls.account_number.touched && !!transferForm.controls.account_number.invalid">
+                <div class="validation-error">10-digit account number is required
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-form text-left mt-4">
+              <label style="padding-top: 20px;padding-right: 20px">
+               Beneficiary
+              </label>
+              <div *ngIf="isLoading" class="spinner-border text-primary spinner-border-sm" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+              <input disabled="true" type="text" [(ngModel)]="beneficiary" [ngModelOptions]="{standalone:true}"  class="browser-default">
+              
+            </div>
+
+
+            <div class="setting-form text-left mt-4">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Amount
+              </label>
+              <input type="number" formControlName="amount" class="browser-default" placeholder="5000">
+              <div *ngIf="!!transferForm.controls.amount.touched && !!transferForm.controls.amount.invalid">
+                <div class="validation-error">Amount is required
+                </div>
+              </div>
+            </div>
+
+
+            <div class="setting-form text-left mt-4">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Remarks(Optional)
+              </label>
+              <input type="text" formControlName="narration" class="browser-default" placeholder="Payment for the delivered goods">
+              <div *ngIf="!!transferForm.controls.narration.touched && !!transferForm.controls.narration.invalid">
+                <div class="validation-error">
+                </div>
+              </div>
+            </div>
+
+
+            <div>
+              <button  [disabled]="transferForm.invalid || isLoading || beneficiary == ''" mdbBtn block="true"
+                class="my-4 customButton" type="submit">Confirm</button>
+            </div>
+
+            <!-- <div>
+              <button [disabled]=true mdbBtn block="true" class="my-4 customButton" type="submit">Confirm</button>
+            </div> -->
+
+
+          </form>
+        </div>
+      </div>
+
+
+    </div>

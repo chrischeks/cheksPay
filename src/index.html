@@ -1,0 +1,102 @@
+<!doctype html>
+
+<html lang="en" class="full-height">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=11" />
+  <title>Welcome to Bizipay</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <!-- <link href="css/mdb.css" rel="stylesheet"> -->
+  <link href="assets/css/general.css" rel="stylesheet" />
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+
+<body class="white-skin bg-skin-lp">
+
+  <mdb-root></mdb-root>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+
+  <script>
+    // key: 'pk_test_1b08506b099a01c831d36017863b1b125a6a00f9',
+    function payWithPaystack() {
+      if(localStorage.BaseUser){
+      let bu = JSON.parse(localStorage.BaseUser)
+      let phone = bu.mobile.replace("+234", "0");
+      let email =  bu.email;
+      var handler = PaystackPop.setup({
+        // key: 'pk_test_1b08506b099a01c831d36017863b1b125a6a00f9',
+        // key: 'pk_live_608d4f71aea43bf29d11aaa871b0eec3a40b424f',
+        key: 'pk_live_35352a5f09ee9bf7f17d104cc1f03536b3eef744',
+        email: `${email}`,
+        // email: 'chekwubeudeogu@gmail.com',
+        amount: 1000,
+        currency: "NGN",
+        ref: '' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+        metadata: {
+          custom_fields: [
+            {
+              display_name: "Mobile Number",
+              variable_name: "mobile_number",
+              value: `${phone}`
+            }
+          ]
+        },
+        callback: function (response) {
+
+          var event = new CustomEvent("ref", { "detail": response.reference });
+
+          document.dispatchEvent(event);
+
+
+        },
+        onClose: function (err) {
+          // alert('window closed');
+        }
+      });
+      handler.openIframe();
+    }
+  }
+
+  </script>
+
+
+
+
+<!-- <script>
+  function payWithPaystack(){
+    var handler = PaystackPop.setup({
+      key: 'pk_test_86d32aa1nV4l1da7120ce530f0b221c3cb97cbcc',
+      email: 'customer@email.com',
+      amount: 10000,
+      currency: "NGN",
+      ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+      metadata: {
+         custom_fields: [
+            {
+                display_name: "Mobile Number",
+                variable_name: "mobile_number",
+                value: "+2348012345678"
+            }
+         ]
+      },
+      callback: function(response){
+          alert('success. transaction ref is ' + response.reference);
+      },
+      onClose: function(){
+          alert('window closed');
+      }
+    });
+    handler.openIframe();
+  }
+</script> -->
+</body>
+
+</html>

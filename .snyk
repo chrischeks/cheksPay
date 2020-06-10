@@ -1,0 +1,12 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:request:20160119':
+    - c > flatiron > broadway > winston > loggly > request:
+        patched: '2020-02-28T17:27:12.852Z'
+    - c > flatiron > prompt > winston > loggly > request:
+        patched: '2020-02-28T17:27:12.852Z'
+    - c > flatiron > broadway > cliff > winston > loggly > request:
+        patched: '2020-02-28T17:27:12.852Z'

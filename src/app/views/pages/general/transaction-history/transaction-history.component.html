@@ -1,0 +1,249 @@
+<div class="container-fluid">
+
+    <!-- <div class="mt-4 d-flex justify-content-center">
+        <span>FUND WALLET</span>
+        <span style="margin-left: 41%;"><a class=" " routerLink="/pages/home">Back to menu</a></span>
+    
+      </div> -->
+  <!-- <div class="mt-5 d-sm-flex justify-content-center">
+    <span><a routerLink="/pages/home">Back to Home</a></span>
+    <div class="pageTitle">Transaction History</div>
+    <input type="text"  >
+  </div> -->
+  <div class="mt-4 d-sm-flex justify-content-end">
+    <div style="margin-right: 12%" ><a class=" " routerLink="/pages/home">Back to menu</a></div>
+      
+  </div>
+  <div class="mt-4 d-sm-flex justify-content-center">
+    <div class="pageTitle">Transaction History</div>
+    <div style="margin-left: 64rem;" class="mb-1 transSearch">
+        <input type="text" placeholder="Search by narration" (keyup)="transactionsTable($event.target.value)">
+    </div>
+  </div>
+  <!-- <div > -->
+
+  <!-- </div> -->
+  <div >
+  <div class="form-group row flex-center">
+
+    <div class="form-card1">
+
+      <form id="msform">
+        <div class="px-4">
+            <div class="pull-right dateRange p-2" (click)="filterDateRange.show()">Filter: Date Range</div>
+            <!-- <button class="btn  btn-sm pull-right" style="border-color: #07A4D9;" (click)="filterDateRange.show()"><a class="dateRange">  Filter: Date Range</a></button> -->
+                
+          <div class="table-wrapper">
+              <table mdbTable class="table table-hover mb-0" style="font-family: Roboto;" 
+                  id="pending-table">
+                  <thead class="sticky-top">
+                      <tr>
+                          <th class="th-md tableTitle ">
+                              <a (click)="sortBy('transferType')">TRANSACTION TYPE
+                                  <i class="fa fa-sort ml-1"></i>
+                              </a>
+                          </th>
+                          <th class="th-md tableTitle">
+                              <a (click)="sortBy('amount')">AMOUNT
+                                  <i class="fa fa-sort ml-1"></i>
+                              </a>
+                          </th>
+                          <th class="th-md tableTitle">
+                              <a (click)="sortBy('xCreatedAt')">Time/DATE
+                                  <i class="fa fa-sort ml-1"></i>
+                              </a>
+                          </th>
+                          <th class="th-md tableTitle">
+                              <a >STATUS
+                                  <i (click)="sortBy('state')" class="fa fa-sort ml-1"></i>
+                              </a>
+                          </th>
+                          
+                          
+                      </tr>
+                  </thead>
+                  <tbody *ngIf="transactions.length === 0">
+                    <p>You have no transaction history</p>
+
+                  </tbody>
+                  <tbody *ngIf="transactions.length > 0">
+                      <tr style="cursor: pointer;" (click)="[viewTransaction(trans), viewTransactionModal.show()]"
+                          *ngFor="let trans of transactions | paginate: {id: 'server', itemsPerPage: 10, currentPage: p, totalItems: transactions.length }">
+                          <td>  {{trans.transferType | titlecase}}</td>
+                          <td>{{trans.amount/100 | currency:'NGN':'symbol-narrow'}}</td>
+                          <td>{{trans.xCreatedAt}}</td>
+                          <td>{{trans.state}}</td>
+                      </tr>
+                  </tbody>
+                 
+              </table>
+
+          </div>
+          <hr class="my-0">
+          <div class="mt-2">
+              <pagination-controls (pageChange)="getTable($event)" id='server'></pagination-controls>
+          </div>
+
+      </div>
+      </form>
+    </div>
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+<div style="overflow-y: scroll" mdbModal #viewTransactionModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="viewTransactionModal.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel"><strong>Transaction Details</strong></h4>
+
+
+            </div>
+            <div class="modal-body">
+                <div [ngClass]="{ 'card card-cascade narrower': true, 'z-depth-0': false }">
+
+                    <!-- <mdb-breadcrumb>
+                        <mdb-breadcrumb-item class="blue-text" (click)="viewStoreModal.hide()">{{storeName | titlecase}}
+                        </mdb-breadcrumb-item>
+                        <mdb-breadcrumb-item class="active">view-store</mdb-breadcrumb-item>
+                    </mdb-breadcrumb> -->
+                    <div class="container-fluid">
+                        <div class="row mb-3">
+                            <div class="col-md-4"></div>
+
+                            <!-- <div *ngIf="storeImgUrl" class="col-md-5 mb-4">
+                                <img style="border-radius: 100%;" [src]=storeImgUrl />
+                            </div> -->
+
+                            <div class="col-md-3"> </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-3 col-example"><strong>ID</strong></div>
+                            <div class="col-md-9 ">{{id}}</div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-3"><strong>Type</strong></div>
+                            <div class="col-md-9">{{transactionType | titlecase}}</div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-3 "><strong>Amount</strong></div>
+                            <div class="col-md-9 ">{{amount}}</div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-3"><strong>Channel</strong></div>
+                            <div class="col-md-9">{{channel}}</div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-3"><strong>State</strong></div>
+                            <div class="col-md-9">{{state}}</div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-3"><strong>Balance Before</strong></div>
+                            <div class="col-md-9">{{balanceBefore}}</div>
+                          </div>
+                          <br />
+              
+                          <div class="row">
+                            <div class="col-md-3"><strong>Balance After</strong></div>
+                            <div class="col-md-9">{{balanceAfter}}</div>
+                          </div>
+                          <br />
+
+                        <div class="row">
+                            <div class="col-md-3"><strong>Source</strong></div>
+                            <div class="col-md-9">{{source}}</div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-3"><strong>Date</strong></div>
+                            <div class="col-md-9">{{transactionDate}}</div>
+                        </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-3"><strong>Narration</strong></div>
+                            <div class="col-md-9">{{narration | titlecase}}</div>
+                        </div>
+                        <br>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                    (click)="viewTransactionModal.hide()" mdbWavesEffect>Close</button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div mdbModal #filterDateRange="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="myBasicModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="filterDateRange.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">SELECT A DATE RANGE</h4>
+            </div>
+            <div class="modal-body">
+               <form [formGroup]="dateForm">
+                   <div class="mb-2">
+                       <label class="font-weight-bold">Start Date</label><br>
+                   <input id="start" type="date" formControlName="startDate">
+                   <div *ngIf="!!dateForm.controls.startDate.touched && !!dateForm.controls.startDate.invalid">
+                    <div class="validation-error">Start date is required </div>
+                  </div>
+                   </div>
+
+                   <div>
+                       <label class="font-weight-bold">End Date</label><br>
+                   <input id="end" type="date" formControlName="endDate">
+                   <div *ngIf="!!dateForm.controls.endDate.touched && !!dateForm.controls.endDate.invalid">
+                    <div class="validation-error">End date is required
+                    </div>
+                  </div>
+                </div>
+               </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                    (click)="filterDateRange.hide()" mdbWavesEffect>Close</button>
+                    <button type="button" mdbBtn color="primary" class="waves-light" [disabled]="dateForm.invalid"
+                    (click)="getRequiredData()" mdbWavesEffect>Filter</button>
+            </div>
+        </div>
+    </div>
+</div>

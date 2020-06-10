@@ -1,0 +1,46 @@
+{
+  "_from": "file:ng-uikit-pro-standard-6.2.6.tgz",
+  "_id": "ng-uikit-pro-standard@6.2.6",
+  "_inBundle": false,
+  "_integrity": "sha512-u35d6ZzInaI7FnnDOlJmXB8wT6yaSoysWDRBCkmULtKD/k71YCyBFVCkAQuhUf5K9yGJGkRx90mSFbiV8pSPGw==",
+  "_location": "/ng-uikit-pro-standard",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "file",
+    "where": "/home/chekwube/EasyCoop_zmerchant",
+    "raw": "ng-uikit-pro-standard@file:ng-uikit-pro-standard-6.2.6.tgz",
+    "name": "ng-uikit-pro-standard",
+    "escapedName": "ng-uikit-pro-standard",
+    "rawSpec": "file:ng-uikit-pro-standard-6.2.6.tgz",
+    "saveSpec": "file:ng-uikit-pro-standard-6.2.6.tgz",
+    "fetchSpec": "/home/chekwube/EasyCoop_merchant/ng-uikit-pro-standard-6.2.6.tgz"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "/home/chekwube/EasyCoop_merchant/ng-uikit-pro-standard-6.2.6.tgz",
+  "_shasum": "1ca438a820e1a4f22a46479576b15881654a273b",
+  "_spec": "ng-uikit-pro-standard@file:ng-uikit-pro-standard-6.2.6.tgz",
+  "_where": "/home/chekwube/EasyCoop_merchant",
+  "bundleDependencies": false,
+  "deprecated": false,
+  "es2015": "./esm2015/ng-uikit-pro-standard.js",
+  "keywords": [
+    "angular"
+  ],
+  "license": "SEE LICENSE IN <license.pdf>",
+  "main": "./bundles/ng-uikit-pro-standard.umd.js",
+  "module": "./esm5/ng-uikit-pro-standard.es5.js",
+  "name": "ng-uikit-pro-standard",
+  "peerDependencies": {
+    "@angular/core": "^6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/http": "^6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "url"
+  },
+  "typings": "./ng-uikit-pro-standard.d.ts",
+  "version": "6.2.6"
+}

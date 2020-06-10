@@ -1,0 +1,117 @@
+<div class="container-fluid">
+  <!-- Begin Page Content -->
+
+
+  <!-- Page Heading -->
+  <div class="mt-4 d-flex justify-content-around">
+    <span style="margin-left: 9.5rem;"><a class="" routerLink="/pages/home" [queryParams]="{bills: true}">Back</a></span>
+
+    <span class="font-weight-bold">DATA</span>
+    <span style="margin-right: 9.5rem;"><a class="" routerLink="/pages/home">Back to menu</a></span>
+
+  </div>
+
+  <!-- Content Row -->
+    <div class="setting-form text-left">
+
+      <div class="form-group row flex-center">
+
+        <div class="form-card">
+
+          <form id="msform" [formGroup]="dataForm">
+            <div class="setting-form text-left">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Network
+              </label>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="container">
+                      <img src="../../../../assets/img/MTN Logo.svg" />
+                      <mdb-checkbox  formControlName="mtn" (change)="checkChange($event, 1)"></mdb-checkbox>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="container">
+                      <img src="../../../../assets/img/9mobile Logo.svg" />
+                      <mdb-checkbox formControlName="etisalat" (change)="checkChange($event,2)"></mdb-checkbox>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="container">
+                      <img src="../../../../assets/img/Airtel Nigeria Logo.svg" />
+                      <mdb-checkbox formControlName="airtel" (change)="checkChange($event,3)"></mdb-checkbox>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="card">
+                    <div class="container">
+                      <img src="../../../../assets/img/Globacom Limited Logo.svg" />
+                      <mdb-checkbox formControlName="glo" (change)="checkChange($event,4)"></mdb-checkbox>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          
+
+            <div class="setting-form text-left mt-4">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Phone Number
+              </label>
+              <input type="tel" formControlName="phone" class="browser-default" placeholder="08012345678">
+              <div *ngIf="!!dataForm.controls.phone.touched && !!dataForm.controls.phone.invalid">
+                <div class="validation-error">11-digit phone number is required
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-form text-left">
+              <label style="padding-top: 20px;padding-right: 20px">
+                {{packageName}}
+                <div *ngIf="isLoading" class="spinner-border spinner-border-sm text-success" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </label>
+    
+              <select class="browser-default custom-select" formControlName="variation_code" (click)="selectedOption($event)">
+                <option disabled>Select An Option</option>
+                <option *ngFor="let options of variations" [selected]=variations[0].variation_code [value]=options.variation_code>
+                  {{options.name}}
+                </option>
+              </select>
+    
+              <div *ngIf="!!dataForm.controls.variation_code.touched && !!dataForm.controls.variation_code.invalid">
+                <div class="validation-error">Data package is required
+                </div>
+              </div>
+            </div>
+           
+            <div>
+              <button (click)="onSubmit()" [disabled]="dataForm.invalid || isLoading || !isChecked" mdbBtn block="true"
+                class="my-4 customButton" type="submit">Confirm</button>
+            </div>
+
+            <!-- <div>
+              <button [disabled]=true mdbBtn block="true" class="my-4 customButton" type="submit">Confirm</button>
+            </div> -->
+
+
+          </form>
+        </div>
+      </div>
+
+
+    </div>

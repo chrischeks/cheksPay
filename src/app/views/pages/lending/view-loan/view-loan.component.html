@@ -1,0 +1,478 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <div class="mt-4">
+        <span><a class="menuColor d-sm-flex justify-content-end" style="margin-right: 185px"
+                routerLink="/pages/request-loan">Back</a></span>
+    </div>
+
+    <div class="setting-form text-left">
+
+        <div class="form-group row flex-center">
+
+            <div class="form-card" style="width: 70% !important;">
+                <!-- Page Heading -->
+                <!-- <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#payoffModal">Payoff Modal</button>
+    <button id="partPayModalButton" [hidden]="true" data-toggle="modal" data-target="#partPaymentModal">PartPayment
+        Modal</button>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h5 mb-0 text-gray-800"><span><a (click)="navigateToAllLoansPage()" style="color: #0000ff">
+                    < Back </a> </span> Loan Breakdown</h1> <span>
+                        <div class="dropdown">
+                            <button (click)="myFunction(100)" [disabled]="loanDetails['close_status'] > 0 || principalBalance == 0"
+                                class="dropbtn btn ">Payoff Loan</button>
+                            <div [id]=100 class="dropdown-content">
+                                <div class="pt-3 ml-3 font-weight-bold">Select A Card</div>
+                                <span *ngFor="let card of cards">
+                                    <a style="font-size: 15px" (click)="payOffLoanAlert(card)">{{card.bank}}
+                                        {{card.last4}}</a>
+                                </span>
+                                <a (click)=addNewCard() class="font-weight-normal">Add new card</a>
+                            </div>
+                        </div>
+            </span>
+    </div> -->
+
+                <!-- Content Row -->
+                <div class="row mb-5">
+
+                    <!-- Loan Card  -->
+                    <div class="col-lg-3 col-md-12 mb-4" data-wow-duration="1.4s">
+                        <a class="card shadow  py-2 bg-gradient-info" style="text-decoration: none;">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-md font-weight-bold text-white text-uppercase mb-1">
+                                            {{loanDetails.details[0].disburseAmt/100 | currency:'NGN':'symbol-narrow'}}
+                                        </div>
+                                        <div class="h6 mb-0 font-weight-bold text-white">Disbursed Amount</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-money-bill fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <!-- Loan Card  -->
+                    <div class="col-lg-3 col-md-12 mb-4" data-wow-duration="1.4s">
+                        <a class="card shadow py-2 bg-gradient-info" style="text-decoration: none;">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-md font-weight-bold text-white text-uppercase mb-1">
+                                            {{loanDetails.details[0].principal/100 | currency:'NGN':'symbol-narrow'}}
+                                        </div>
+                                        <div class="h6 mb-0 font-weight-bold text-white">Principal Amount</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-money-bill fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Loan Card  -->
+                    <div class="col-lg-3 col-md-12 mb-4" data-wow-duration="1.4s">
+                        <a class="card shadow  py-2 bg-gradient-info" style="text-decoration: none;">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-md font-weight-bold text-white text-uppercase mb-1">
+                                            {{loanDetails.details[0].interest/100 | currency:'NGN':'symbol-narrow'}}
+                                        </div>
+                                        <div class="h6 mb-0 font-weight-bold text-white">Repayment Amount</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-money-bill fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <!-- Loan Card  -->
+                    <div class="col-lg-3 col-md-12 mb-4" data-wow-duration="1.4s">
+                        <a class="card shadow py-2 bg-gradient-info" style="text-decoration: none;">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-md font-weight-bold text-white text-uppercase mb-1">
+                                            {{loanDetails.details[0].monthlyRepayments/100 | currency:'NGN':'symbol-narrow'}}
+                                            (x{{loanDetails.details[0].duration}})</div>
+                                        <div class="h6 mb-0 font-weight-bold text-white">Monthly Repayment </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-money-bill fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <!-- Page Heading -->
+                <div>
+                    <h4 class="text-center"> <strong>Overview</strong></h4>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-success btn-sm" (click)="payBack()">Payback</button>
+
+                    </div>
+                </div>
+
+                <!-- Content Row -->
+
+
+                <!--Table-->
+                <table>
+
+                    <!--Table head-->
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Amount</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <!-- <th>Pay</th> -->
+
+                        </tr>
+                        <!-- [ngClass]="{'cancelledSchedule': schedule.status==0}" -->
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let schedule of loanDetails.details[0].repaymentSchedule; let i = index">
+                            <th scope="row">{{i + 1}}</th>
+                            <td>{{schedule.monthlyRepayments/100 | currency: 'NGN': 'symbol-narrow'}}</td>
+                            <td>{{schedule.dueDate}}</td>
+                            <td>
+                                <div *ngIf="schedule.hasPaid === true">Paid</div>
+                                <div *ngIf="schedule.hasPaid === false">Not Paid</div>
+                            </td>
+
+                            <!-- <td>
+                    <button class="btn btn-success btn-sm" (click)="payBack(schedule.monthlyRepayments)">Payback</button>
+                </td> -->
+
+
+                        </tr>
+
+
+                    </tbody>
+                    <!--Table body-->
+
+
+                </table>
+
+
+
+                <div id="requirements">
+                    <div class="mt-5">
+                        <div class="text-center" *ngIf="completeDoc === false">
+                            <h4> <strong> REQUIREMENTS</strong></h4>
+                            <h6>Please upload the documents listed below</h6>
+                            <small>(NOTE: You can always come back and continue)</small>
+                        </div>
+                        <div class="text-center" *ngIf="completeDoc === true">
+                            <h4> <strong> UPLOADED DOCUMENTS</strong></h4>
+
+                        </div>
+
+                        <hr>
+                        <div class="row mt-4" *ngIf="completeDoc === false">
+                            <div class="col-6">
+                                <select class="browser-default custom-select"
+                                    (change)="selectedRequirement($event.target.value)">
+                                    <option disabled>Select and upload document</option>
+                                    <option *ngFor="let req of requirements" [value]="req.value">{{req.label}}
+                                    </option>
+
+                                </select>
+                            </div>
+                            <div class="col-6">
+
+                                <div>
+                                    <input type="file" (change)="onFileChanged($event)" #fileInput1>
+                                    <button type="button" *ngIf="base64String" class="btn btn-primary btn-sm mt-2"
+                                        (click)="loanUpload()">UPLOAD File</button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <table>
+                                <tr>
+                                    <th>#</th>
+                                    <th>File Name</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                                <tr *ngFor="let req of requirements; let j = index">
+                                    <th scope="row">{{j + 1}}</th>
+
+                                    <td> {{req.label}}</td>
+
+                                    <td>
+                                        <small *ngIf="req.url"> Click <a [href]="req.url" target="_blank">here</a> to
+                                            view {{req.label}} </small>
+                                        <small *ngIf="!req.url">Not Available</small>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="!req.url">
+                                            <i class="fa fa-check-circle text-danger"></i>
+                                        </div>
+                                        <div *ngIf="req.url">
+                                            <i class="fa fa-check-circle text-primary"></i>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <button *ngIf="completeDoc === false" class="btn btn-primary" type="button"
+                                (click)="finishLoanUploads()">Finish</button>
+                        </div>
+                        <!-- <button *ngIf="returningBorrower !== true" class="btn btn-primary mt-2" type="submit" (click)="requestLoan()">Submit Request</button> -->
+                    </div>
+                </div>
+
+
+
+                <div class="mt-5">
+                    <div class="text-center">
+                        <h4> <strong> OTHER INFORMATION</strong></h4>
+                        <hr>
+                    </div>
+
+                    <div>
+                        <!-- <div class="text-center">OTHER LOAN DETAILS</div> -->
+
+                        <div>
+
+                            <table >
+
+                                <tr >
+                                    <td ><b>APPLICATION DATE</b></td>
+                                    <td >{{loanDetails.xCreatedAt}}</td>
+
+                                </tr>
+                                <tr >
+                                    <td ><b>FULL NAME</b></td>
+                                    <td >{{loanDetails.userFullname}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b> STATUS </b></td>
+                                    <td >{{loanDetails.status}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>PHONE NUMBER</b></td>
+                                    <td >{{loanDetails.userMobile}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>CODE</b></td>
+                                    <td >{{loanDetails.userCode}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>USER ID</b></td>
+                                    <td >{{loanDetails.userId}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>LOAN ID</b></td>
+                                    <td >{{loanDetails._id}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>DURATION</b></td>
+                                    <td >{{loanDetails.details[0].duration}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>DUE DATE</b></td>
+                                    <td >{{loanDetails.details[0].dueDate}}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                    <div class="mt-5">
+                        <!-- <div class="text-center">OTHER LOAN DETAILS</div> -->
+                        <div>
+                            <table >
+                                <tr >
+                                    <td style="width: 45%;"><b>LOAN TITLE</b></td>
+                                    <td >{{loanDetails.offer.title}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>MAXIMUM AMOUNT</b></td>
+                                    <td >
+                                        {{loanDetails.offer.loanAmtTo/100 | currency: 'NGN': 'symbol-narrow'}}
+                                    </td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>MINIMUM AMOUNT</b></td>
+                                    <td >
+                                        {{loanDetails.offer.loanAmtFrom/100 | currency: 'NGN': 'symbol-narrow'}}
+                                    </td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>MAXIMUM TENOR</b></td>
+                                    <td >{{loanDetails.offer.tenorTo}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>MINIMUM TENOR</b></td>
+                                    <td >{{loanDetails.offer.tenorFrom}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>INTEREST RATE</b></td>
+                                    <td >{{loanDetails.offer.interest}}</td>
+                                </tr>
+
+                                <tr >
+                                    <td ><b>LOAN DESCRIPTION</b></td>
+                                    <td  [innerHtml]="loanDetails.offer.description"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div mdbModal #payBackModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="myBasicModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="payBackModal.hide()">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">PAY BACK OPTIONS</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-2"> <a (click)="confirmLoanRepayAmount()"><span class="fa fa-credit-card"> &nbsp; Pay
+                                with card</span> </a></div>
+                    <div class="mb-2"> <a (click)="mCashModal.show()"><span class="fa fa-phone"> &nbsp; Pay with
+                                mCash</span></a></div>
+                    <div class="mb-2"><a (click)="viaAgentModal.show()"><span class="fa fa-user"> &nbsp; Pay via
+                                agents</span></a></div>
+                    <div class="mb-2"><a (click)="offlineModal.show()"><span class="fa fa-money"> &nbsp; Pay
+                                offline</span></a></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                        (click)="payBackModal.hide()" mdbWavesEffect>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div mdbModal #mCashModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="myBasicModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="mCashModal.hide()">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">Pay using mCash</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Kindly dial <strong>{{coymCashCode}}</strong> for your loan repayment and follow the steps to
+                        complete payment</p>
+                    <p>Thank you for using <strong>"Spectrum"</strong></p>
+                    <hr style="border: 3px solid black">
+                    <p>Amount Payable: <strong>{{this.monthAmountPayable | currency:'NGN':'symbol-narrow'}}</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                        (click)="mCashModal.hide()" mdbWavesEffect>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div mdbModal #viaAgentModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="myBasicModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="viaAgentModal.hide()">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">Pay via agent</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You can make payments by visiting any designated "Spectrum" agent location.</p>
+                    <strong>Please call these lines below</strong><br>
+                    <small>+234 907 905 4908</small> <br>
+                    <small>+234 907 276 4603</small>
+                    <hr style="border: 2px solid black">
+
+                    <p>Thank you for using <strong>{{coyApp}}</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                        (click)="viaAgentModal.hide()" mdbWavesEffect>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div mdbModal #offlineModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="myBasicModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="offlineModal.hide()">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title w-100" id="myModalLabel">Offline Accounts</h4>
+                </div>
+                <div class="modal-body">
+                    You can make payments to the following bank(s) listed below!<br>
+                    Kindly indicate the payment type in the description<br>
+                    <strong>Account Name:</strong><br>
+                    <strong>Bank:</strong><br>
+                    <strong>Account Number:</strong>
+
+                    <hr style="border: 2px solid black">
+                    <p>Thank you for using <strong>{{coyApp}}</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                        (click)="offlineModal.hide()" mdbWavesEffect>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

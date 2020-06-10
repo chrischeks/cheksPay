@@ -1,0 +1,143 @@
+<div class="container-fluid" style="font-family: roboto;">
+  <!-- Begin Page Content -->
+
+
+  <!-- Page Heading -->
+  <div class="mt-4">
+    <span><a class="menuColor d-sm-flex justify-content-end" routerLink="/pages/home">Back to menu</a></span>
+    <span class="bills d-flex justify-content-center">PROFILE</span>
+  </div>
+
+  <!-- Content Row -->
+  <div class="setting-form text-left">
+
+    <div class="form-group row flex-center">
+
+      <div class="form-card" *ngIf="bu">
+        <!-- <h5 class="font-weight-bold">My Profile</h5> -->
+        <div class="d-flex justify-content-end" *ngIf="isHome">
+          <button class="btn btn-success btn-sm " *ngIf='!showBvn' (click)="toggleShowBvn()">Add BVN</button>
+        </div>
+        <div class="row mt-4" *ngIf="!showBvn">
+
+          <div class="col-4">
+            
+            <img *ngIf="bu.imgUrl.split('/')[0]==='assets' && !croppedImage" (load)="onImageLoad()"
+              src="../../../../../assets/img/default-avatar.png" alt="Default Avatar">
+
+            <img *ngIf="bu.imgUrl.split('/')[0]!=='assets' && !croppedImage" [src]="bu.imgUrl +'?lastmod=' + timeStamp" (load)="onImageLoad()"
+              alt="Passport photograph">
+            <!-- <mdb-spinner *ngIf="imageLoading" spinnerColor="green"></mdb-spinner> -->
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3"
+              [resizeToWidth]="128" format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded()"
+              (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()">
+            </image-cropper>
+
+            <img [src]="croppedImage" />
+            <input id="imgButton" type="file" (change)="fileChangeEvent($event)" accept="image/*" />
+            <button class="btn btn-primary btn-sm" type="button" (click)="clickFileButton('imgButton')"><i
+                class="fa fa-upload"></i>Upload</button>
+
+            <button *ngIf="croppedImage !== ''" class="btn btn-success btn-sm" type="button"
+              (click)="saveImage('profilePicture')"><i class="fa fa-upload"></i>Save</button>
+          </div>
+          <div class="col-8">
+            
+            <div class="row">
+              <div class="col-4 font-weight-bold"> <strong> First name:</strong></div>
+              <div class="col-8 "><strong>{{bu.fName}}</strong></div>
+            </div>
+
+            <div class="row">
+              <div class="col-4 font-weight-bold"><strong>Last name:</strong></div>
+              <div class="col-8 "><strong>{{bu.sName}}</strong></div>
+            </div>
+
+            <div class="row">
+              <div class="col-4 font-weight-bold"><strong>Phone no:</strong></div>
+              <div class="col-8 "><strong>{{bu.mobile}}</strong></div>
+            </div>
+
+            <div class="row">
+              <div class="col-4 font-weight-bold"><strong>Date registered:</strong></div>
+              <div class="col-8"><strong>{{bu.regDatex}}</strong></div>
+            </div>
+
+            <div class="row">
+              <div class="col-4 font-weight-bold"><strong>ID:</strong></div>
+              <div class="col-8"><strong>{{bu._id}}</strong></div>
+            </div>
+
+            <div class="row">
+              <div class="col-4 font-weight-bold"><strong>Active:</strong></div>
+              <div class="col-8"><strong>{{bu.isActive}}</strong></div>
+            </div>
+
+            <div class="row">
+              <div class="col-4 font-weight-bold"><strong>BVN:</strong></div>
+              <div class="col-8"><strong>{{bu.bvn | json}}</strong></div>
+            </div>
+
+            <div *ngIf="bu.customerDetails">
+              <div class="row">
+                <div class="col-4 font-weight-bold"><strong>Date of birth:</strong></div>
+                <div class="col-8"><strong>{{bu.customerDetails.DateOfBirth}}</strong></div>
+              </div>
+
+              <div class="row">
+                <div class="col-4 font-weight-bold"><strong>Email:</strong></div>
+                <div class="col-8"><strong>{{bu.customerDetails.EmailAddress}}</strong></div>
+              </div>
+
+              <div class="row">
+                <div class="col-4 font-weight-bold"><strong>Street:</strong></div>
+                <div class="col-8"><strong>{{bu.customerDetails.Street}}</strong></div>
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-4 font-weight-bold">City:</div>
+                <div class="col-8"><strong>{{bu.customerDetails.City}}</strong></div>
+              </div>
+
+              <div class="row">
+                <div class="col-4 font-weight-bold">PoBox:</div>
+                <div class="col-8"><strong>{{bu.customerDetails.PoBox}}</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf='showBvn'>
+          <!-- <div>Add BVN</div>
+          <hr> -->
+          <div>
+           
+          
+            <form [formGroup]="bvnForm" id="msform" (ngSubmit)="resolveBvn()">
+              <div class="settings-form text-left">
+
+              <div class="mb-4">
+                <label for="bvn">BVN</label>
+            <input type="tel" class="form-control" placeholder="Enter your BVN here" formControlName= "x">
+          </div>
+            <div
+            *ngIf="!!bvnForm.controls.x.touched && !!bvnForm.controls.x.invalid">
+            <div class="validation-error">Your 11-digits BVN is required
+            </div>
+        </div>
+      </div>
+
+            <button class="btn btn-success btn-lg" [disabled]="bvnForm.invalid" type="submit">Submit</button>
+            <button class="btn btn-lg btn-outline-dark" (click)="toggleShowBvn()" type="button">Back</button>
+          </form>
+              
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,359 @@
+  <div class="">
+        <div class="row  pt-5 mt-3">
+          <div class="col-md-12">
+            <div class="card wow fadeIn" data-wow-delay="0.3s" style="animation-name: none; visibility: visible;">
+                <div class="flex-center"> <img src="../../../assets/img/logo.png" height="50" width="50"> </div>
+              <div class="card-body">
+              <h2 class="feature-title text-center mb-3 mt-2 font-bold"><strong>NEW ACCOUNT</strong></h2>
+              <hr>
+              <div class="row mt-5">
+                <div class="col-md-5 ml-1 ml-md-2 features-small">
+                  <div class="row pb-3">
+                    <div class="col-2 col-lg-1">
+                      <i class="fa fa-bank green-text fa-lg"></i>
+                    </div>
+                    <div class="col-10">
+                      <h4 class="feature-title"><strong>Notes!</strong></h4>
+                      <p class="dark-grey-text"><b>+</b> All the fields are mandatory</p>
+                      <p class="dark-grey-text"><b>+</b> The mobile number must be 11 digits</p>
+                      <p class="dark-grey-text"><b>+</b> The PIN or password must be 4 digits</p>
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="col-md-6">
+
+                  <div class="isValidInfo" *ngIf="!isValidInfo">
+                    <div class="row title">
+                      <div class="col-12">Personal Information</div>
+                    </div>
+                      <div class="row">
+                          <div class="col-4">
+                              <label style="margin: 0px;padding: 0px;">Title</label>
+                              <div class="md-form">
+                                  <mdb-select [options]="titleSelect" [(ngModel)]="p_infoTitle"  class="colorful-select dropdown-primary"></mdb-select>
+                                </div>
+                          </div>
+                          <div class="col-4">
+                              <label style="margin: 0px;padding: 0px;">Gender</label>
+                              <div class="md-form">
+                                  <mdb-select [options]="genderSelect" [(ngModel)]="p_infoGender"  class="colorful-select dropdown-primary"></mdb-select>
+                              </div>
+                          </div>
+                          <div class="col-4">
+                              <label style="margin: 0px;padding: 0px;">Marital Status</label>
+                              <div class="md-form">
+                                  <mdb-select [options]="maritalStatusSelect" [(ngModel)]="p_infoMaritalStatus"  class="colorful-select dropdown-primary"></mdb-select>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="md-form">
+                                    <input type="text" [(ngModel)]="p_infoFName" class="form-control" [validateSuccess]="false" [validateError]="false" readonly="true" mdbInputDirective>
+                                    <label for="p_infoFName">First Name *</label>
+                                  </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="md-form">
+                                    <input type="text" [(ngModel)]="p_infoSName" class="form-control" [validateSuccess]="false" [validateError]="false" readonly="true" mdbInputDirective>
+                                    <label for="p_infoSName">Surname *</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="md-form">
+                                    <input type="text" [(ngModel)]="p_infoOName" class="form-control" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                    <label for="p_infoOName">Other Name(s)</label>
+                                </div>
+                            </div>
+                          </div>
+                      <div class="row">
+                        <div class="col-6">
+                            <div >
+                                <mdb-date-picker  [(ngModel)]="p_infoDOB"  [options]="myDatePickerOptions" required placeholder="Date of Birth *"></mdb-date-picker>
+                              </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="md-form">
+                                <input type="tel" [(ngModel)]="p_infoBvn" class="form-control" maxlength="11" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                <label for="p_infoBvn">BVN *</label>
+                            </div>
+                        </div>
+                      </div>
+                   
+                      <div class="row">
+                          <div class="col-12 flex-center">
+                              <button  class="btn btn-success mt-3 waves-effect waves-light" mdbWavesEffect (click)="toAddress()">
+                                <mdb-icon fas icon="check" class="mr-2" aria-hidden="true"></mdb-icon>Next</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="isValidInfo" *ngIf="isValidInfo&&!isValidAddress">
+                      <div class="row title">
+                        <div class="col-12" >Address</div>
+                      </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="md-form">
+                                    <input type="text" [(ngModel)]="address_infoHouseNo" class="form-control" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                    <label for="address_infoHouseNo">House Number *</label>
+                                  </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="md-form">
+                                    <input type="text" [(ngModel)]="address_infoZip" class="form-control" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                    <label for="address_infoZip">ZIP Code *</label>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <div class="md-form">
+                                      <textarea mdbInputDirective type="text" class="md-textarea form-control" [(ngModel)]="address_infoStreet" rows="2" [validateSuccess]="false" [validateError]="false"></textarea>
+                                      <label for="address_infoStreet">Street Name *</label>
+                                    </div>
+                              </div>
+                              <div class="col-6">
+                                  <div class="md-form">
+                                      <textarea mdbInputDirective type="text" class="md-textarea form-control" [(ngModel)]="address_infoLandmark" rows="2" [validateSuccess]="false" [validateError]="false"></textarea>
+                                      <label for="address_infoLandmark">Landmark *</label>
+                                  </div>
+                              </div>
+                            </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <div class="md-form">
+                                      <input type="text" [(ngModel)]="address_infoCity" class="form-control" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                      <label for="address_infoCity">City *</label>
+                                    </div>
+                              </div>
+                              <div class="col-6">
+                                  <label style="margin: 0px;padding: 0px;">State *</label>
+                                      <div class="md-form">
+                                          <mdb-select [options]="stateSelect" [(ngModel)]="address_infoState"  class="colorful-select dropdown-primary"></mdb-select>
+                                      </div> 
+                              </div>
+                            </div>
+                        <div class="row">
+                          <div class="col-6">
+                              <div class="md-form">
+                                  <input type="text" [(ngModel)]="address_infoMobile" class="form-control" maxlength="11"  [validateSuccess]="false" [validateError]="false" readonly="true" mdbInputDirective>
+                                  <label for="address_infoMobile">Mobile number*</label>
+                                </div>
+                          </div>
+                          <div class="col-6">
+                              <div class="md-form">
+                                  <input type="email" [(ngModel)]="address_infoEmail" class="form-control"  [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                  <label for="address_infoEmail">Email *</label>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 flex-center">
+                                <button  class="btn btn-success mt-3 waves-effect waves-light" mdbWavesEffect color="primary" (click)="toNok()">
+                                    <mdb-icon fas icon="check" class="mr-2" aria-hidden="true"></mdb-icon>Next
+                                  </button>
+                            </div>
+                            <div class="col-6 flex-center">
+                                <button  class="btn btn-warning mt-3 waves-effect waves-light" mdbWavesEffect color="primary" (click)="backToinfo()">
+                                    <mdb-icon fas icon="close" class="mr-2" aria-hidden="true"></mdb-icon>Back
+                                  </button>
+                            </div>
+                        </div>
+                  </div>  
+                  <div class="isValidInfo" *ngIf="isValidAddress&&!isValidNok">
+                      <div class="row title">
+                        <div class="col-12">Next Of Kin</div>
+                      </div>
+                      <div class="row">
+                          <div class="col-3">
+                              <label style="margin: 0px;padding: 0px;">Title *</label>
+                              <div class="md-form">
+                                  <mdb-select [options]="titleSelect" [(ngModel)]="nok_infoTitle"  class="colorful-select dropdown-primary"></mdb-select>
+                                </div>
+                          </div>
+                          <div class="col-3">
+                              <label style="margin: 0px;padding: 0px;">Gender *</label>
+                              <div class="md-form">
+                                  <mdb-select [options]="genderSelect" [(ngModel)]="nok_infoGender"  class="colorful-select dropdown-primary"></mdb-select>
+                              </div>
+                          </div>
+                          <div class="col-3">
+                              <label style="margin: 0px;padding: 0px;">Relationship *</label>
+                              <div class="md-form">
+                                  <mdb-select [options]="nokRelationshipSelect" [(ngModel)]="nok_infoRelationship"  class="colorful-select dropdown-primary"></mdb-select>
+                              </div>
+                          </div>
+                          <div class="col-3">
+                              <label style="margin: 0px;padding: 0px;">Marital Status</label>
+                              <div class="md-form">
+                                  <mdb-select [options]="maritalStatusSelect" [(ngModel)]="nok_infoMaritalStatus"  class="colorful-select dropdown-primary"></mdb-select>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="md-form">
+                                    <input type="text" [(ngModel)]="nok_infoFName" class="form-control" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                    <label for="nok_infoFName">First Name *</label>
+                                  </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="md-form">
+                                    <input type="text" [(ngModel)]="nok_infoSName" class="form-control" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                    <label for="nok_infoSName">Surname *</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="md-form">
+                                    <input type="text" [(ngModel)]="nok_infoOName" class="form-control" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                    <label for="nok_infoOName">Other Name(s)</label>
+                                </div>
+                            </div>
+                          </div>
+                      <div class="row">
+                        <div class="col-12">
+                            <div class="md-form">
+                                <mdb-date-picker id="month_for" [(ngModel)]="nok_infoDOB"  [options]="myDatePickerOptions" required placeholder="Date of Birth *"></mdb-date-picker>
+                              </div>
+                        </div>
+                      
+                      </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="md-form">
+                                    <input type="text" [(ngModel)]="nok_infoHouseNo" class="form-control" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                    <label for="nok_infoHouseNo">House Number *</label>
+                                  </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="md-form">
+                                    <input type="text" [(ngModel)]="nok_infoZip" class="form-control" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                    <label for="nok_infoZip">ZIP Code *</label>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <div class="md-form">
+                                      <textarea mdbInputDirective type="text" class="md-textarea form-control" [(ngModel)]="nok_infoStreet" rows="2" [validateSuccess]="false" [validateError]="false"></textarea>
+                                      <label for="nok_infoStreet">Street Name *</label>
+                                    </div>
+                              </div>
+                              <div class="col-6">
+                                  <div class="md-form">
+                                      <textarea mdbInputDirective type="text" class="md-textarea form-control" [(ngModel)]="nok_infoLandmark" rows="2" [validateSuccess]="false" [validateError]="false"></textarea>
+                                      <label for="nok_infoLandmark">Landmark *</label>
+                                  </div>
+                              </div>
+                            </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <div class="md-form">
+                                      <input type="text" [(ngModel)]="nok_infoCity" class="form-control" [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                      <label for="nok_infoCity">City *</label>
+                                    </div>
+                              </div>
+                              <div class="col-6">
+                                  <label style="margin: 0px;padding: 0px;">State *</label>
+                                  <div class="md-form">
+                                      <mdb-select [options]="stateSelect" [(ngModel)]="nok_infoState"  class="colorful-select dropdown-primary"></mdb-select>
+                                  </div>
+                              </div>
+                            </div>
+                        <div class="row">
+                          <div class="col-6">
+                              <div class="md-form">
+                                  <input type="text" [(ngModel)]="nok_infoMobile" class="form-control" maxlength="11"  [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                  <label for="nok_infoMobile">Mobile number*</label>
+                                </div>
+                          </div>
+                          <div class="col-6">
+                              <div class="md-form">
+                                  <input type="email" [(ngModel)]="nok_infoEmail" class="form-control"  [validateSuccess]="false" [validateError]="false" mdbInputDirective>
+                                  <label for="nok_infoEmail">Email *</label>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 flex-center">
+                                <button  class="btn btn-success mt-3 waves-effect waves-light" mdbWavesEffect color="primary" (click)="toEmp()">
+                                    <mdb-icon fas icon="check" class="mr-2" aria-hidden="true"></mdb-icon>Next
+                                  </button>
+                            </div>
+                            <div class="col-6 flex-center">
+                                <button  class="btn btn-warning mt-3 waves-effect waves-light" mdbWavesEffect color="primary" (click)="backToAddress()">
+                                    <mdb-icon fas icon="close" class="mr-2" aria-hidden="true"></mdb-icon>Back
+                                  </button>
+                            </div>
+                        </div>
+                  </div> 
+                  <div class="isValidInfo" *ngIf="isValidNok">
+                      <div class="row title">
+                        <div class="col-12">Employment Information (Optional)</div>
+                      </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="md-form">
+                                    <mdb-date-picker [(ngModel)]="emp_infoDOB"  [options]="myDatePickerOptions" required placeholder="Date of Employment"></mdb-date-picker>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <label style="margin: 0px;padding: 0px;">Status </label>
+                                  <div class="md-form">
+                                      <mdb-select [options]="empStatusSelect" [(ngModel)]="emp_infoStatus"  class="colorful-select dropdown-primary"></mdb-select>
+                                  </div>
+                              </div>
+                              <div class="col-6">
+                                  <label style="margin: 0px;padding: 0px;">State </label>
+                                  <div class="md-form">
+                                      <mdb-select [options]="stateSelect" [(ngModel)]="emp_infoState"  class="colorful-select dropdown-primary"></mdb-select>
+                                  </div>
+                              </div>
+                            </div>
+                          <div class="row">
+                              <div class="col-4">
+                                  <div class="md-form">
+                                      <textarea mdbInputDirective type="text" class="md-textarea form-control" [(ngModel)]="emp_infoBizname" rows="2" [validateSuccess]="false" [validateError]="false"></textarea>
+                                      <label for="emp_infoBizname">Business Name</label>
+                                    </div>
+                              </div>
+                              <div class="col-4">
+                                  <div class="md-form">
+                                      <textarea mdbInputDirective type="text" class="md-textarea form-control" [(ngModel)]="emp_infoBizAddress" rows="2" [validateSuccess]="false" [validateError]="false"></textarea>
+                                      <label for="emp_infoBizAddress">Business Address</label>
+                                  </div>
+                              </div>
+                              <div class="col-4">
+                                  <div class="md-form">
+                                      <textarea mdbInputDirective type="text" class="md-textarea form-control" [(ngModel)]="emp_infoOccupation" rows="2" [validateSuccess]="false" [validateError]="false"></textarea>
+                                      <label for="emp_infoOccupation">Business Occupation</label>
+                                  </div>
+                              </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-6 flex-center">
+                                <button  class="btn btn-success mt-3 waves-effect waves-light" mdbWavesEffect color="primary" (click)="createAccount()">
+                                    <mdb-icon fas icon="check-circle" class="mr-2" aria-hidden="true"></mdb-icon>Create Account
+                                  </button>
+                            </div>
+                            <div class="col-6 flex-center">
+                                <button  class="btn btn-warning mt-3 waves-effect waves-light" mdbWavesEffect color="primary" (click)="backToNok()">
+                                    <mdb-icon fas icon="close" class="mr-2" aria-hidden="true"></mdb-icon>Back
+                                  </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+
+
+  

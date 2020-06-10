@@ -1,0 +1,246 @@
+<div class="container-fluid">
+  <!-- Begin Page Content -->
+
+
+
+  <!-- Content Row -->
+
+
+  <div class="mt-4 d-flex justify-content-around">
+    <span style="margin-left: 9.5rem;"><a class="" routerLink="/pages/home" [queryParams]="{bills: true}">Back</a></span>
+
+    <span class="font-weight-bold">BILLS</span>
+    <span style="margin-right: 9.5rem;"><a class="" routerLink="/pages/home">Back to menu</a></span>
+
+  </div>
+
+  <div class="form-group row flex-center">
+
+    <div class="form-card">
+
+      <form id="msform" [formGroup]="billForm">
+        <div class="setting-form text-left">
+          <label style="padding-top: 20px;padding-right: 20px">
+            Select the bill you want to pay
+          </label>
+          <select class="browser-default custom-select" (change)="billTypeChange($event)">
+            <option disabled [selected]=true>Choose an option</option>
+            <option>Tv</option>
+            <option>Electricity</option>
+            <option>Waec</option>
+            <option>Insurance</option>
+          </select>
+        </div>
+
+        <div class="setting-form text-left">
+          <label style="padding-top: 20px;padding-right: 20px">
+            {{billType? billType: "Bill Type"}}
+          </label>
+          <select class="browser-default custom-select"  (click)="selectedBill($event)" formControlName="serviceID">
+            <option disabled [selected]=true>Select the type of bill you want to pay</option>
+            <option *ngFor="let options of selectedBillTypes"  [value]="options.value">
+              {{options.name}}
+            </option>
+          </select>
+
+          <div *ngIf="!!billForm.controls.serviceID.touched && !!billForm.controls.serviceID.invalid">
+            <div class="validation-error">Bill Type is required
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-form text-left">
+          <label style="padding-top: 20px;padding-right: 20px">
+            {{packageName}}
+            <div *ngIf="isLoading" class="spinner-border spinner-border-sm text-success" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </label>
+
+          <select *ngIf="!billType" class="browser-default custom-select" formControlName="variation_code">
+            <option disabled [selected]=true>Select a bill type first</option>
+          </select>
+
+          <select *ngIf="billType && billType !== 'Electricity'" class="browser-default custom-select" (click)="changeVariationCode($event)" formControlName="variation_code">
+            <option disabled [selected]=true>Select an option</option>
+            <option *ngFor="let options of variations" [value]="options.variation_code">
+              {{options.name}} ({{options.variation_amount}} Naira)
+            </option>
+          </select>
+
+          <select *ngIf="billType &&  billType == 'Electricity'" class="browser-default custom-select"
+            formControlName="variation_code">
+            <option disabled>Select an option</option>
+            <option value="prepaid">Prepaid</option>
+            <option value="postpaid">PostPaid</option>
+          </select>
+
+          <div *ngIf="!!billForm.controls.variation_code.touched && !!billForm.controls.variation_code.invalid">
+            <div class="validation-error">Package name is required
+            </div>
+          </div>
+        </div>
+
+      
+        <div *ngIf="!!billType && !(billType == 'Waec')" class="setting-form text-left">
+          <label style="padding-top: 20px;padding-right: 20px">
+            {{device}} Number
+            <!-- <span *ngIf="isCheckingBiller">
+              <div class="spinner-border spinner-border-sm text-success" role="status">
+                <span class="sr-only"></span>
+              </div>
+              <small >Please wait, Checking {{device}}</small>
+            </span> -->
+          </label>
+
+          <!-- <input type="text" class="browser-default"
+            (keyup)="!!billForm.controls.billersCode.valid && billType !== 'Insurance'? validBillerLength($event): ''"
+            formControlName="billersCode" /> -->
+            <input type="text" class="browser-default" formControlName="billersCode" />
+
+          <div *ngIf="!!billForm.controls.billersCode.touched && !!billForm.controls.billersCode.invalid">
+            <div class="validation-error">{{device}} number is required
+            </div>
+          </div>
+        </div>
+
+
+        <div class="setting-form text-left ">
+          <label style="padding-top: 20px;padding-right: 20px">
+            Phone Number
+          </label>
+          <input type="number" formControlName="phone" class="browser-default" placeholder="08012345678">
+          <div *ngIf="!!billForm.controls.phone.touched && !!billForm.controls.phone.invalid">
+            <div class="validation-error">11-digit phone number is required
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="billType=='Electricity'" class="setting-form text-left">
+          <label style="padding-top: 20px;padding-right: 20px">
+            Amount
+          </label>
+          <input type="number" formControlName="amount" class="browser-default">
+          <div *ngIf="!!billForm.controls.amount.touched && !!billForm.controls.amount.invalid">
+            <div class="validation-error">Amount in digits is required
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="billType=='Insurance'">
+
+        <div class="setting-form text-left ">
+            <label style="padding-top: 20px;padding-right: 20px">
+              Owner's Name
+            </label>
+            <input type="text" formControlName="Insured_Name" class="browser-default">
+            <div *ngIf="!!billForm.controls.Insured_Name.touched && !!billForm.controls.Insured_Name.invalid">
+              <div class="validation-error">Owner's Name is required
+              </div>
+            </div>
+          </div>
+
+
+          <div class="setting-form text-left ">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Engine Number
+              </label>
+              <input type="text" formControlName="Engine_Number" class="browser-default" >
+              <div *ngIf="!!billForm.controls.Engine_Number.touched && !!billForm.controls.Engine_Number.invalid">
+                <div class="validation-error">Engine Number is required
+                </div>
+              </div>
+            </div>
+
+
+          <div class="setting-form text-left ">
+              <label style="padding-top: 20px;padding-right: 20px">
+                Chasis Number
+              </label>
+              <input type="text" formControlName="Chasis_Number" class="browser-default" >
+              <div *ngIf="!!billForm.controls.Chasis_Number.touched && !!billForm.controls.Chasis_Number.invalid">
+                <div class="validation-error">Chasis Number is required
+                </div>
+              </div>
+            </div>
+
+
+          <div class="setting-form text-left ">
+              <label style="padding-top: 20px;padding-right: 20px">
+                  Vehicle Make
+              </label>
+              <input type="text" formControlName="Vehicle_Make" class="browser-default" >
+              <div *ngIf="!!billForm.controls.Vehicle_Make.touched && !!billForm.controls.Vehicle_Make.invalid">
+                <div class="validation-error">Vehicle Make is required
+                </div>
+              </div>
+            </div>
+
+
+          <div class="setting-form text-left ">
+              <label style="padding-top: 20px;padding-right: 20px">
+                  Vehicle Color
+              </label>
+              <input type="text" formControlName="Vehicle_Color" class="browser-default" >
+              <div *ngIf="!!billForm.controls.Vehicle_Color.touched && !!billForm.controls.Vehicle_Color.invalid">
+                <div class="validation-error">Vehicle Color is required
+                </div>
+              </div>
+            </div>
+
+
+          <div class="setting-form text-left ">
+              <label style="padding-top: 20px;padding-right: 20px">
+                  Vehicle Model
+              </label>
+              <input type="text" formControlName="Vehicle_Model" class="browser-default" >
+              <div *ngIf="!!billForm.controls.Vehicle_Model.touched && !!billForm.controls.Vehicle_Model.invalid">
+                <div class="validation-error">Vehicle Model is required
+                </div>
+              </div>
+            </div>
+
+
+          <div class="setting-form text-left ">
+              <label style="padding-top: 20px;padding-right: 20px">
+                  Year of Make
+              </label>
+              <input type="text" formControlName="Year_of_Make" class="browser-default" placeholder="2019">
+              <div *ngIf="!!billForm.controls.Year_of_Make.touched && !!billForm.controls.Year_of_Make.invalid">
+                <div class="validation-error">Year of Make with correct year format is required
+                </div>
+              </div>
+            </div>
+
+
+          <div class="setting-form text-left ">
+              <label style="padding-top: 20px;padding-right: 20px">
+                  Contact Address
+              </label>
+              <input type="text" formControlName="Contact_Address" class="browser-default" >
+              <div *ngIf="!!billForm.controls.Contact_Address.touched && !!billForm.controls.Contact_Address.invalid">
+                <div class="validation-error">Contact Address is required
+                </div>
+              </div>
+            </div>
+      
+          </div>
+        <div>
+         
+          <!-- <button (click)="payBill()"
+            [disabled]="billForm.invalid || !this.billForm.value.variation_code || isLoading1 || !billerVerified" mdbBtn
+            block="true" class="my-4 customButton" type="submit">Confirm</button> -->
+          <button (click)="payBill()"
+            [disabled]="billForm.invalid || !billForm.value.variation_code || isLoading1" mdbBtn
+            block="true" class="my-4 customButton" type="submit">Confirm</button>
+        </div>
+
+        <!-- <div>
+          <button [disabled]=true mdbBtn block="true" class="my-4 customButton" type="submit">Confirm</button>
+        </div> -->
+
+      </form>
+    </div>
+  </div>
+
+</div>

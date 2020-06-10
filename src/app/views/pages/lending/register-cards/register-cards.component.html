@@ -1,0 +1,150 @@
+<div class="full-bg-img">
+    <div class="container flex-center">
+      <!--Grid row-->
+      <div class="row  pt-5 mt-3">
+  
+        <!--Grid column-->
+        <div class="col-md-12">
+  
+          <div class="card">
+            <div class="card-body">
+  
+              <h2 class="feature-title text-center mb-5 mt-4 font-bold"><strong>Card Registration</strong></h2>
+              <hr>
+  
+              <!--Grid row-->
+              <div class="row mt-5">
+  
+                <!--Grid column-->
+                <div class="col-md-6 ml-lg-5 ml-md-3 features-small">
+  
+                  <!--Grid row-->
+                  <div class="row pb-3">
+                    <div class="col-2 col-lg-1">
+                      <i class="fa fa-bank indigo-text fa-lg"></i>
+                    </div>
+                    <div class="col-10">
+                      <h4 class="feature-title"><strong>How it works</strong></h4>
+                      <p class="dark-grey-text">We believe that trust, when given freely, is often returned. This is why we request for minimal documentation or collateral. Our primary aim is to ensure that you are able to meet your needs today as swiftly and as securely as possible.</p>
+                    </div>
+                  </div>
+                  <!--Grid row-->
+  
+                  <!--Grid row-->
+                  <div class="row pb-3">
+                    <div class="col-2 col-lg-1">
+                      <i class="fa fa-desktop deep-purple-text fa-lg"></i>
+                    </div>
+                    <div class="col-10">
+                      <h4 class="feature-title"><strong>Why Add a bank account?</strong></h4>
+                      <p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit
+                        maiores nam, aperiam minima assumenda deleniti hic.</p>
+                    </div>
+                  </div>
+                  <!--Grid row-->
+  
+                  <!--Grid row-->
+                  <div class="row pb-4">
+                    <div class="col-2 col-lg-1">
+                      <i class="fa fa-money purple-text fa-lg"></i>
+                    </div>
+                    <div class="col-10">
+                      <h4 class="feature-title"><strong>Why add a bank card</strong></h4>
+                      <p class="dark-grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit
+                        maiores nam, aperiam minima assumenda deleniti hic.</p>
+                    </div>
+                  </div>
+                  <!--Grid row-->
+  
+                </div>
+                <!--Grid column-->
+  
+                <!--Grid column-->
+                <div class="col-md-5">
+                  <form [formGroup]="xForm" >
+                  <!--/Grid row-->
+                  <!--Body-->
+                  <div class="md-form">
+										<div class="form-check form-check-inline"  (change)="checkType($event.target.value)">
+												<input type="radio" class="form-check-input" id="account" value="Account"
+																formControlName="typeRadio" name="typeRadio" mdbInputDirective [validateSuccess]="false" [validateError]="false">
+												<label class="form-check-label" for="account">Account</label>
+											</div>
+											<div class="form-check form-check-inline"  (change)="checkType($event.target.value)">
+												<input type="radio" class="form-check-input" id="card" value="Card"
+																formControlName="typeRadio" name="typeRadio" mdbInputDirective [validateSuccess]="false" [validateError]="false">
+												<label class="form-check-label" for="card">Card</label>
+											</div>
+                  </div>
+                  
+                  <div *ngIf="isTypeAccount">
+                    <label *ngIf="!isVerified">Select Bank</label>
+                    <div class="md-form form-sm" *ngIf="!isVerified&&hasBank">
+                            <mdb-select [options]="bankSelect" formControlName="dd_bank"  class="colorful-select dropdown-primary"></mdb-select>
+                            <!-- <label>Select Bank</label> -->
+                        </div>
+
+                    <div class="md-form" *ngIf="!isVerified">
+                      <input type="text" formControlName="acc_no" id="acc_no" class="form-control" mdbInputDirective placeholder="">
+                      <label for="acc_no">Please enter your account number</label>
+                    </div>
+                    <label class="md-form" *ngIf="isVerified">Account Name: {{accountName}} </label><br>
+
+                    <div >
+                    <button *ngIf="!isVerified" class="btn btn-indigo btn-rounded mt-3 waves-effect waves-light" mdbWavesEffect (click)="verifyAccountDetails()">Verify Account</button>
+                    <button *ngIf="isVerified&&!canSave" class="btn btn-indigo btn-rounded mt-3 waves-effect waves-light" mdbWavesEffect (click)="proceedToCardDetails()">Proceed</button>
+                    <button *ngIf="isVerified&&!canSave" class="btn btn-danger btn-rounded mt-3 waves-effect waves-light" mdbWavesEffect (click)="backToVerifyDetails()">Back</button>
+                    <button *ngIf="isVerified&&canSave" class="btn btn-indigo btn-rounded mt-3 waves-effect waves-light" mdbWavesEffect (click)="saveAccount()">Add Account</button>
+                  </div>
+                 
+                </div>
+               
+                  <div *ngIf="!isTypeAccount">
+                    <div class="md-form">
+                      <input type="text" formControlName="card_no" id="card_no" class="form-control" mdbInputDirective>
+                      <label for="card_no">Enter Card Number</label>
+                    </div>
+                    <div class="md-form">
+                      <input type="text" formControlName="exp_month" id="exp_month" class="form-control" mdbInputDirective placeholder="MM">
+                      <label for="exp_month">Enter Expiry Month</label>
+                    </div>
+                    <div class="md-form">
+                      <input type="text" formControlName="exp_year" id="exp_year" class="form-control" mdbInputDirective placeholder="YY">
+                      <label for="exp_year">Enter Expiry Year</label>
+                    </div>
+                    <div class="md-form">
+                      <input type="text" formControlName="cvv" id="cvv" class="form-control" mdbInputDirective placeholder="123">
+                      <label for="cvv">Enter CVV</label>
+                    </div>
+                    
+                    <div class="md-form">
+                        <div class="form-check form-check-inline" [checked]="isAgreed" (change)="checkAgreed()">
+                            <input type="checkbox" class="form-check-input" id="checkAgree" 
+                                    formControlName="checkAgree"  mdbInputDirective [validateSuccess]="false" [validateError]="false">
+                            <label class="form-check-label" for="checkAgree">I Agree to the <a routerLink="../../pages/login">T&S</a></label>
+                          </div>
+                      </div>
+                      <label>A sum of NGN 100.00 will be deducted from your card to verify it is active!!</label>
+                      <div>
+                        <button  class="btn btn-indigo btn-rounded mt-3 waves-effect waves-light" mdbWavesEffect (click)="saveCard()">Save Card </button>
+                      </div>
+                  </div >
+                  
+                </form>
+  
+                </div>
+                <!--Grid column-->
+  
+              </div>
+              <!--Grid row-->
+  
+            </div>
+          </div>
+  
+        </div>
+        <!--Grid column-->
+  
+      </div>
+      <!--Grid row-->
+    </div>
+  </div>

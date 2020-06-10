@@ -1,0 +1,8 @@
+<app-user-header *ngIf="!isSpecialPage()"></app-user-header>
+<main [ngClass]="{'py-0 px-0 my-0 mx-0': isSpecialPage()}" class="bg-white cover" style="height:54rem">
+    <!-- <app-notification></app-notification> -->
+    <div [class.container-fluid]="!isSpecialPage()" >
+        <router-outlet></router-outlet>
+    </div>
+</main>
+<app-user-footer *ngIf="!isSpecialPage()"></app-user-footer>

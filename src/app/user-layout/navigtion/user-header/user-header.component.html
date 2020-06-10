@@ -1,0 +1,101 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand>
+    <a class="navbar-brand" routerLink="pages/home" >
+      <logo>
+        <div class="breadcrumbs breadcrumb-dn mr-auto headerText">
+          <img src="../../../assets/img/logo1.png" width="100px" class="img-fluid  navImage" style="margin-left: 11rem;">
+        </div>
+      </logo>
+    </a>
+  </mdb-navbar-brand>
+
+  <!-- <links class="d-flex justify-content-end">
+
+    <ul class="navbar-nav" >
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Menu<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/settings']" routerLinkActive="router-link-active" >Settings</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+           Support<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+         Language<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+        </div>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link dropdown-toggle waves-light" mdbWavesEffect>{{firstName}}<mdb-icon fas icon="user"></mdb-icon></a>
+      </li>
+      
+
+    </ul>
+  </links> -->
+  <links class="d-flex justify-content-end head" style="margin-right:11rem">
+
+    <ul class="navbar-nav" >
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Menu<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <!-- <a disabled="true" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/settings']" routerLinkActive="router-link-active" >Quick Save</a>
+          <a disabled="true" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/settings']" routerLinkActive="router-link-active" >Loans</a>
+          <a disabled="true" class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/settings']" routerLinkActive="router-link-active" >Withdraw</a> -->
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/cards']" routerLinkActive="router-link-active" >Cards</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/transfer']" routerLinkActive="router-link-active" >Transfer</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/fund-wallet']" routerLinkActive="router-link-active" >Fund Wallet</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/transaction-history']" routerLinkActive="router-link-active" >Transactions</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/refer-a-friend']" routerLinkActive="router-link-active" >Referrals</a>
+
+
+        </div>
+      </li>
+
+      <!-- <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+           Support<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+        </div>
+      </li> -->
+
+       <!-- <li class="nav-item active">
+        <a class="nav-link waves-light" mdbWavesEffect>Support<mdb-icon fas icon="user"></mdb-icon></a>
+      </li> -->
+
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          {{firstName}}<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/profile']">Profile</a>
+          <!-- <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/pages/settings']" routerLinkActive="router-link-active" >Settings</a> -->
+          <a class="dropdown-item waves-light" mdbWavesEffect (click)="logOut()">Log out</a>
+        </div>
+      </li>
+
+      <!-- <li class="nav-item active">
+        <a class="nav-link dropdown-toggle waves-light" mdbWavesEffect>{{firstName}}<mdb-icon fas icon="user"></mdb-icon></a>
+      </li> -->
+      
+
+    </ul>
+  </links>
+</mdb-navbar>

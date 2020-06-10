@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <!-- Begin Page Content -->
+  
+  
+    <!-- Page Heading -->
+    <div class="mt-4">
+      <span><a class="menuColor d-sm-flex justify-content-end" routerLink="/pages/home">Back to menu</a></span>
+    </div>
+  
+    <!-- Content Row -->
+    <div class="setting-form text-left">
+  
+      <div class="form-group row flex-center">
+  
+        <div class="form-card">
+  
+          <!-- <div *ngIf="!baseUser.account_cards">
+  
+          <div class="text-right" >
+            <button class="btn btn-sm btn-success" (click)="cardPage()" >Add Card</button>
+          </div>
+  
+          <div class="mt-4">
+            <p>You have no card, click on the 'Add Card' button to go to the add </p>
+          </div>
+  
+        </div> -->
+  
+          <div>
+            <h6 class="text-center">Select the card that will be charge</h6>
+            <div *ngFor="let card of cards" class="mt-4">
+              <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div class="card" (click)="selectCard(card)">
+                    <div class="card__front card__part">
+                      <img class="card__front-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                      <h6 class="card__front-logo card__logo text-white">{{card.bank}}</h6>
+                      <p class="card_numer">**** **** **WALLET FUNDING** {{card.last4}}</p>
+                      <div class="card__space-75">
+                        <span class="card__label">Card holder</span>
+                      </div>
+                      <div class="card__space-25">
+                        <span class="card__label">Expires</span>
+                        <p class="card__info">{{card.exp_month}}/{{card.exp_year.substring(0,2)}}</p>
+                      </div>
+                    </div>
+  
+                    <div class="card__back card__part">
+                      <div class="card__black-line"></div>
+                      <div class="card__back-content">
+                        <div class="card__secret">
+                          <p class="card__secret--last">420</p>
+                        </div>
+                        <img class="card__back-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                      </div>
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                  <div *ngIf="!card.isSelected">
+                    <mdb-checkbox (click)="selectCard(card)" [default]="true"></mdb-checkbox>
+                  </div>
+                  <div *ngIf="card.isSelected">
+                    <mdb-checkbox (click)="selectCard(card)" [checked]="true" [default]="true"></mdb-checkbox>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+  
+  
+  
+          <div class="mt-4 d-flex justify-content-center">
+            <button [disabled]="!selectedCard" (click)="onContinue()" class="btn btn-success" >Confirm</button>
+          </div>  
+
+        </div>
+      </div>
+  
+  
+    </div>
+  </div>

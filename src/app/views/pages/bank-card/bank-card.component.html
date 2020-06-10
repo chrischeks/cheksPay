@@ -1,0 +1,157 @@
+<div class="container-fluid">
+  <!-- Begin Page Content -->
+
+
+  <!-- Page Heading -->
+  <div class="mt-4">
+    <span><a class="menuColor d-sm-flex justify-content-end" routerLink="/pages/home">Back to menu</a></span>
+    <span class="bill d-sm-flex justify-content-center">CARDS</span>
+  </div>
+  
+
+  <!-- Content Row -->
+  <div class="setting-form text-left">
+
+    <div class="form-group row flex-center">
+
+      <div class="form-card">
+
+        <!-- <div class="text-right" *ngIf="(!bu.account_cards || bu.account_cards) && !addCard">
+          <button class="btn btn-sm btn-success" (click)="toggleCard()">Add Card</button>
+        </div>
+
+        <div class="text-right" *ngIf="(!bu.account_cards || bu.account_cards.length ==0) && addCard">
+          <button class="btn btn-sm btn-success" (click)="toggleCard()">Back</button>
+        </div> -->
+
+        <div class="text-right" *ngIf="!addCard">
+          <button class="btn btn-sm btn-success" (click)="toggleCard()">Add Card</button>
+        </div>
+
+        <div class="text-right" *ngIf="addCard">
+          <button class="btn btn-sm btn-success" (click)="toggleCard()">Back</button>
+        </div>
+
+        <div *ngIf="cards.length==0 && !addCard" class="mt-4">
+          <p>You have no card, click on the 'Add Card' button to add a card</p>
+        </div>
+
+
+        <div *ngIf="!addCard">
+          <div *ngFor="let card of cards">
+
+            <div class="card mb-4" (click)="deleteCardAccount(card)">
+              <div class="card__front card__part">
+                <img class="card__front-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                <!-- <img class="card__front-logo card__logo" src="https://www.fireeye.com/partners/strategic-technology-partners/visa-fireeye-cyber-watch-program/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1505254557388.png"> -->
+                <h6 class="card__front-logo card__logo text-white">{{card.bank}}</h6>
+                <p class="card_numer">**** **** **** {{card.last4}}</p>
+                <div class="card__space-75">
+                  <span class="card__label">Card holder</span>
+                  <!-- <p class="card__info">John Doe</p> -->
+                </div>
+                <div class="card__space-25">
+                  <span class="card__label">Expires</span>
+                  <p class="card__info">{{card.exp_month}}/{{card.exp_year.substring(0,2)}}</p>
+                </div>
+              </div>
+
+              <div class="card__back card__part">
+                <div class="card__black-line"></div>
+                <div class="card__back-content">
+                  <div class="card__secret">
+                    <!-- <p class="card__secret--last">420</p> -->
+                  </div>
+                  <img class="card__back-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                  <img class="card__back-logo card__logo"
+                    src="https://www.fireeye.com/partners/strategic-technology-partners/visa-fireeye-cyber-watch-program/_jcr_content/content-par/grid_20_80_full/grid-20-left/image.img.png/1505254557388.png">
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <form id="msform" [formGroup]="cardForm" *ngIf="addCard">
+          <h4>Add Account And Card</h4>
+          <hr>
+
+          <div class="setting-form text-left mt-4">
+            <label style="padding-top: 20px;padding-right: 20px">
+              Bank Name
+            </label>
+            <select class="browser-default custom-select" formControlName="bank">
+              <option disabled>Select A Bank</option>
+              <option *ngFor="let bank of bankSelect" [value]="bank.value">
+                {{bank.label}}
+              </option>
+            </select>
+          </div>
+
+
+          <div class="setting-form text-left mt-4">
+            <label style="padding-top: 20px;padding-right: 20px">
+              Account Number
+            </label>
+            <input type="tel" formControlName="acc_no" class="browser-default" placeholder="08012345678">
+            <div *ngIf="!!cardForm.controls.acc_no.touched && !!cardForm.controls.acc_no.invalid">
+              <div class="validation-error">10-digit account number is required
+              </div>
+            </div>
+          </div>
+
+
+          <!-- <div class="setting-form text-left mt-4">
+            <label style="padding-top: 20px;padding-right: 20px">
+              Email Address
+            </label>
+            <input type="email" id="email" formControlName="email" class="browser-default" placeholder="custmer@mail.com">
+            <div *ngIf="!!cardForm.controls.email.touched && !!cardForm.controls.email.invalid">
+              <div class="validation-error">Valid email address is required
+              </div>
+            </div>
+          </div> -->
+
+
+
+          <div class="setting-form text-left mt-4">
+            <div class="row">
+              <div class="col-12  flex-center">
+                <div class="form-check form-check-inline" [checked]="isAgreed" (change)="toggleCheckbox()">
+                  <label class="containerCheckbox"><span class="checkboxText">A transaction fee of <strong> 50 NGN
+                      </strong> will be charged </span>
+                    <input type="checkbox" id="checkAgree1">
+                    <span class="checkmark"></span>
+                  </label>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+
+          <div class="d-sm-flex justify-content-center">
+            <button id="paystack" class="btn btn-sm" onclick="payWithPaystack()" style="display:none"></button>
+              <button [disabled]="cardForm.invalid || !isAgreed" class="btn btn-block" (click)="resolveAccount()"
+              style="background-color:#07A4D9; width: 50%; border-radius: 10px;">Add Card</button>
+
+            <!-- <button class="btn btn-dark btn-sm" (click)="toggleCard()">Cancel</button> -->
+
+          </div>
+
+
+
+
+
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+</div>

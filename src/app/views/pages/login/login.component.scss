@@ -1,0 +1,93 @@
+$introBg: "../../../../assets/img/bizipayBg.jpg";
+
+.intro-2 {
+    background: url($introBg) repeat-x center;
+    background-size: cover;
+    position: relative;
+    
+}
+
+
+
+.md-form label {
+    color: #ffffff;
+}
+
+.intro {
+    min-height: 100vh;
+    position: relative;
+}
+
+.rgba-stylish-strong .mask {
+    background-color: rgba(62, 69, 81, .7);
+}
+
+.layer {
+    background-color: rgba(3, 119, 158, 0.66);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.authText{
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    
+    
+}
+
+.welcomeHead{
+font-weight: bold;
+font-size: 24px;
+line-height: 28px;
+color: #07A4D9;
+}
+
+.welcomeText{
+font-weight: 500;
+font-size: 12px;
+line-height: 14px;
+color: #616161
+}
+
+
+
+.downText{
+font-weight: 500;
+font-size: 12px;
+line-height: 14px;
+}
+
+.buttonText{
+font-weight: bold;
+font-size: 16px;
+line-height: 19px
+}
+
+.bottomText{
+font-weight: 500;
+font-size: 14px;
+line-height: 16px;
+color: #ffffff
+}
+
+.headText{
+font-weight: bold;
+font-size: 30px;
+line-height: 35px;
+}
+
+.btn:hover, .btn:active, .btn:focus {
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 5px 0 rgba(0, 0, 0, 0.15) !important;
+    outline: 0;
+    color: #ffffff;
+}
+
+@media only screen and (max-width: 1366px) {
+    div.cover{
+      height: 39rem!important;
+    }
+}

@@ -1,0 +1,342 @@
+<div class="container-fluid" style="overflow-y: auto;">
+
+
+	<div class="" style="margin: 0 auto; width: 80%;">
+		<div class="mt-5">
+			<div class="headerText">Registration</div>
+
+			<div class="subTitle mt-2">Please fill in all the details below</div>
+		</div>
+		<!-- <div class="col-2"></div> -->
+		<!-- <div class=""> -->
+		<form [formGroup]="registerForm" (ngSubmit)="signUp()">
+		<div class="row mb-4">
+			<!-- <div ></div> -->
+			<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+				<div class="mx-4">
+
+					<div>
+						<div class="mt-5">
+							<label for="mobile number" class="labelText">Full Name</label>
+						</div>
+						<input type="text" id="defaultSubscriptionFormFullname" required class="form-control"
+							placeholder="First-name followed by Surname" formControlName="fullName">
+							<div class=" mb-3" *ngIf="!!registerForm.controls.fullName.touched && !!registerForm.controls.fullName.invalid">
+								<div class="validation-error">Full name (First name followed by surname) is required
+								</div>
+							</div>
+					</div>
+
+					<div>
+						<div class="mt-5">
+							<label for="mobile number" class="labelText">Mobile Number</label>
+						</div>
+						<input id="defaultSubscriptionFormMobileNumber" required type="text" formControlName="xMobile" 
+						maxlength="11" class="form-control" placeholder="Enter your mobile number">
+						<div class=" mb-3" *ngIf="!!registerForm.controls.xMobile.touched && !!registerForm.controls.xMobile.invalid">
+							<div class="validation-error">11-digit phone number is required
+							</div>
+						</div>
+					</div>
+
+					<div>
+						<div class="mt-5">
+							<label for="mobile number" class="labelText">Email Address</label>
+						</div>
+						<input id="defaultSubscriptionFormEmail" class="form-control" required type="email"
+							placeholder="sample@email.com" formControlName="email">
+							<div class=" mb-3" *ngIf="!!registerForm.controls.email.touched && !!registerForm.controls.email.invalid">
+								<div class="validation-error">Email address in the right format is required
+								</div>
+							</div>
+					</div>
+				</div>
+
+
+			</div>
+			<!-- <div class="col-1"></div> -->
+
+			<div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+				<div class="mx-4 ">
+
+					<div>
+						<div class="mt-5">
+							<label for="mobile number" class="labelText">Date Of Birth</label>
+						</div>
+						<input required type="date" placeholder="30/04/2000" formControlName="dob"
+							id="defaultSubscriptionFormDob" class="form-control">
+							<div class=" mb-3" *ngIf="!!registerForm.controls.dob.touched && !!registerForm.controls.dob.invalid">
+								<div class="validation-error">Date of birth is required
+								</div>
+							</div>
+					</div>
+
+					<div class="mb-5">
+						<div class="mt-5">
+							<label for="mobile number" class="labelText">Select Your Sex</label>
+						</div>
+
+						<div class="form-check form-check-inline ">
+							<input type="radio" class="form-check-input" id="materialInline1" [value]="female"
+								[(ngModel)]="sex" name="sex" [ngModelOptions]="{standalone: true}">
+							<label class="form-check-label" for="materialInline1">Female</label>
+						</div>
+
+						<div class="form-check form-check-inline">
+							<input type="radio" class="form-check-input" id="materialInline2" [(ngModel)]="sex"
+								[value]="male" name="sex" [ngModelOptions]="{standalone: true}">
+							<label class="form-check-label" for="materialInline2">Male</label>
+						</div>
+
+						<div class="form-check form-check-inline mb-2">
+							<input type="radio" class="form-check-input" id="materialInline3" [(ngModel)]="sex"
+								[value]="others" name="sex" [ngModelOptions]="{standalone: true}">
+							<label class="form-check-label" for="materialInline3">Others</label>
+						</div>
+					</div>
+
+					<div class="">
+						<div class="" style="margin-top: 3.3rem;">
+							<label for="mobile number" class="labelText">PIN</label>
+							<div class="row">
+								<span class="col-sm-11 col-xs-11 pr-2">
+									<input required [type]="inputType" class="form-control" placeholder="Enter your 6 digits PIN"
+									formControlName="xPin" maxlength="6" minlength="6" id="defaultSubscriptionPin">
+								</span>
+								<span *ngIf="!showPassword" title="Click to hide your password" class="col-sm-1 col-xs-1 cursor pl-0" (click)="toggleShowPassword()"><i class="fa fa-eye"></i></span>
+								<span *ngIf="showPassword" title="Click to reveal your password" class="col-sm-1 col-xs-1 cursor pl-0" (click)="toggleShowPassword()"><i class="fa fa-eye-slash"></i></span>
+							</div>
+
+							<!-- <div class="row">
+								<span class="col-sm-11 col-xs-11 pr-0 mr-0">
+									<input style="border-right: 0px;" required [type]="inputType" class="form-control" placeholder="Enter your 6 digits PIN"
+									formControlName="xPin" maxlength="6" minlength="6" id="defaultSubscriptionPin">
+								</span>
+								<span style="border: 0.5px solid #ced4da; border-left: 0px; border-radius: 4px;" *ngIf="!showPassword" title="Click to hide your password" class="col-sm-1 col-xs-1 cursor pl-0 " (click)="toggleShowPassword()"><i class="fa fa-eye"></i></span>
+								<span style="border: 0.5px solid #ced4da; border-left: 0px; border-radius: 4px;" *ngIf="showPassword" title="Click to reveal your password" class="col-sm-1 col-xs-1 cursor pl-0" (click)="toggleShowPassword()"><i class="fa fa-eye-slash"></i></span>
+							</div> -->
+							
+						</div>
+						
+							<div class=" mb-3" *ngIf="!!registerForm.controls.xPin.touched && !!registerForm.controls.xPin.invalid">
+								<div class="validation-error">6 digit PIN is required
+								</div>
+							</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+		<div class="down" >
+			<div [checked]="isAgreed" (change)="checkAgreed()" class="flex-column">
+				<div class="d-flex justify-content-center">
+				<label class="containerCheckbox " >
+					<input type="checkbox" [(ngModel)]="checkAgree" id="checkAgree" [ngModelOptions]="{standalone: true}">
+					<span class="checkmark" style="border: 1px solid blue;"></span>
+				</label>
+				<div>
+				<span class="checkboxText">I agree to the Terms of Service</span>
+			</div>
+			</div>
+			<!-- [disabled]="registerForm.invalid || isAgreed===false || sex===''" -->
+				<div *ngIf="isAgreed" class="d-flex justify-content-center">
+				<button class="btn btn-block buttonText mt-4 " style=" width: 50%; background-color: #07A4D9;border-radius: 10px;"
+				 type="submit" >Registration
+				</button>
+			</div>
+				<div class="d-flex justify-content-center mt-4">
+				<div class="login footText"> Already have an account? <span style="color: #1FC157; cursor: pointer; " [routerLink]="['/login']"> Click here </span></div>
+			</div>
+		</div>
+		</div>
+	</form>
+
+
+
+		
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+<header>
+	<section class="view intro intro-2">
+		<div class="full-bg-img rgba-stylish-strong mask flex-center">
+			<div class="container" >
+				<div class="row">
+					<div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-lg-5">
+
+						<div class="card wow fadeIn" data-wow-delay="0.3s"
+							style="animation-name: none; visibility: visible; ">
+							<div class="flex-center mt-2"> <img src="../../../assets/img/logo.png" height="50"
+									width="50"> </div>
+							<div class="card-body pb-0" style="overflow-y: auto; height: 480px;">
+								<div style="display: flex;justify-content: center; align-items: center;">
+									<div class="loginTitle"> REGISTRATION</div>
+								</div>
+								<div style="display: flex;justify-content: center; align-items: center;"
+									class="formInstruction">Please Fill In All The Details Below</div>
+
+								<div class="md-form">
+
+									<div class="setting-form text-left">
+										<div class="loginSubtitle mb-2"
+											style="padding-top: 10px;padding-right: 20px; color:#FFFFFF">
+											Full Name
+										</div>
+										<input required type="text" placeholder="First name followed by Surname"
+											[(ngModel)]="full_name"
+											style=" color: #ffffff; height: 50px; width: 100%; background-color: transparent; border: 1px solid #FFFFFF; box-sizing:border-box;">
+
+									</div>
+
+								</div>
+
+
+								<div class="md-form">
+
+									<div class="setting-form text-left">
+										<div class="loginSubtitle mb-2" style="padding-right: 20px; color:#FFFFFF">
+											Mobile Number
+										</div>
+										<input required type="text" pattern="[0-9]" maxlength="11"
+											placeholder="Enter Your 11 Digits Mobile Number" [(ngModel)]="mobile"
+											style="color: #ffffff; height: 50px; width: 100%; background-color: transparent; border: 1px solid #FFFFFF; box-sizing: border-box;">
+									</div>
+								</div>
+
+
+								<div class="md-form">
+									<div class="setting-form text-left">
+										<div class="loginSubtitle mb-2" style="padding-right: 20px; color:#FFFFFF">
+											Email Address
+										</div>
+										<input required type="email"  placeholder="sample@email.com" [(ngModel)]="email"
+											style="color: #ffffff; height: 50px; width: 100%; background-color: transparent; border: 1px solid #FFFFFF; box-sizing: border-box;">
+									</div>
+								</div>
+
+
+								<div class="md-form">
+									<div class="setting-form text-left">
+										<div class="loginSubtitle mb-2" style="padding-right: 20px; color:#FFFFFF">
+											Date of Birth
+										</div>
+										<input required type="date" placeholder="30/04/2000" [(ngModel)]="dob"
+											style="color: #ffffff; height: 50px; width: 100%; background-color: transparent; border: 1px solid #FFFFFF; box-sizing: border-box;">
+									</div>
+								</div>
+
+
+								<div class="md-form">
+									<div class="setting-form text-left ">
+										<div class="loginSubtitle mb- text-color2" style="padding-right: 20px; color:#FFFFFF">
+											Select Your Sex
+										</div>
+										<div class="form-check form-check-inline " >
+											<input type="radio" class="form-check-input" id="materialInline1" [value]="female" [(ngModel)]="sex" name="sex" >
+											<label class="form-check-label text-white" for="materialInline1">Female</label>
+										  </div>
+										  
+										  <div class="form-check form-check-inline">
+											<input type="radio" class="form-check-input" id="materialInline2" [(ngModel)]="sex" [value]="male" name="sex" >
+											<label class="form-check-label text-white" for="materialInline2">Male</label>
+										  </div>
+										  
+										  <div class="form-check form-check-inline">
+											<input type="radio" class="form-check-input" id="materialInline3" [(ngModel)]="sex" [value]="others" name="sex">
+											<label class="form-check-label text-white" for="materialInline3">Others</label>
+										  </div>
+									</div>
+								</div>
+
+
+								<div class="md-form">
+									<div class="setting-form text-left">
+										<div class="loginSubtitle mb-2" style="padding-right: 20px; color:#FFFFFF">
+											Pin
+										</div>
+										<input required type="text" placeholder="Enter your 6 digits PIN" [(ngModel)]="xpin"
+											maxlength="6" minlength="6"
+											style="color: #ffffff; height: 50px; width: 100%; background-color: transparent; border: 1px solid #FFFFFF; box-sizing: border-box;">
+
+									</div>
+
+								</div>
+
+
+
+
+
+
+
+								<div class="md-form">
+
+									<div class="setting-form text-left">
+										<div class="row">
+											<div class="col-12  flex-center">
+												<div class="form-check form-check-inline" [checked]="isAgreed"
+													(change)="checkAgreed()">
+													<label class="containerCheckbox">
+														<span class="checkboxText" style="color:#FFFFFF !important">I
+															Agree To The <a [routerLink]="['/login']"
+																style="color:#FFFFFF !important; text-decoration: underline;">Terms
+																Of Service</a></span>
+														<input type="checkbox" [(ngModel)]="checkAgree" id="checkAgree">
+														<span class="checkmark"></span>
+													</label>
+												</div>
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div *ngIf="isAgreed" style="margin-top: -10px;">
+								<div class="text-center">
+									<button class="btn  cardBackground mainBtn registerSuccess"
+										style="border-radius: 5px;" mdbWavesEffect (click)="signUp()">REGISTER</button>
+
+								</div>
+
+							</div>
+							<div class="text-center font-weight-bold mb-4" style="font-size: 12px">
+								<span style="color:#FFFFFF">Have An Account?</span> <span
+									style="color: #00A85B; cursor: pointer;" [routerLink]="['/login']"> Click here
+								</span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</header> -->

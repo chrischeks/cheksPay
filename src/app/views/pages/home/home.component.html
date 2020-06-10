@@ -1,0 +1,336 @@
+<div class="container-fluid mt-5 ">
+
+
+  <div class="">
+
+    <div class="row" style="margin: 0 auto">
+      <div class="col-md-1"></div>
+
+      <!-- <div > -->
+
+      <div class="col-md-7 col-xs-12 col-sm-12 col-lg-7">
+        <div >{{greetingText}}, {{firstName}}
+        </div>
+        <p> 
+          <span class="mr-2" (click)="refreshBalance()" style="cursor:pointer"> 
+            Wallet Balance: <span class="welcomeText"> {{balance | currency:'NGN':'symbol-narrow'}}  </span>
+          <i *ngIf="!isLoading" class="fa fa-refresh"></i>
+          <div *ngIf="isLoading" class="spinner-grow" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          </span>
+        </p>
+
+
+
+        <div class="card card-cascade cardRightBorder">
+          <div class="row ml-2 my-4 topCard">
+            <div class="col-md-3 col-xs-12 col-sm-3 col-lg-3">
+              <div>TOTAL SAVINGS</div>
+              <div><strong>N0.00</strong></div>
+            </div>
+
+            <div class="col-md-3 col-xs-12 col-sm-3 col-lg-3">
+              <div>INTEREST EARNED</div>
+              <div><strong>N0.00</strong></div>
+            </div>
+
+            <div class="col-md-3 col-xs-12 col-sm-3 col-lg-3">
+              <div>LOANABLE AMOUNT</div>
+              <div><strong>N0.00</strong></div>
+            </div>
+
+            <div class="col-md-3 col-xs-12 col-sm-3 col-lg-3">
+              <div>WITHDRAWAL AMOUNT</div>
+              <div><strong>N0.00</strong></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div *ngIf="!showBills">
+          <div class="row mt-3 text-center mx-4">
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 mb-3">
+              <div class="card card-cascade menuCard" style="border-right: 10px solid #ffffff ; ">
+
+                <div class="my-3 mx-4">
+                  <i><img src="../../../../assets/img/quick_save1.svg" width="50px" alt="quick save"></i>
+                  <div class="menuText p-2">QUICK SAVE</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 mb-3">
+              <div (click)="checks()" class="card card-cascade menuCard"
+                style="border-right: 10px solid #ffffff; cursor: pointer;">
+                <div class="mx-4 my-3">
+                  <i><img src="../../../../assets/img/loans1.svg" width="50px" alt="loans"></i>
+                  <div class="menuText">LOANS</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 mb-3">
+              <div class="card card-cascade menuCard" style="border-right: 10px solid #ffffff ; cursor: pointer">
+                <div class="my-3 mx-4">
+                  <i><img src="../../../../assets/img/withdraw1.svg" width="50px" alt="withdraw"></i>
+                  <div class="menuText p-2">WITHDRAW</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- </div> -->
+
+
+
+            <!-- <div class="row mt-3 text-center mx-4"> -->
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 mb-3">
+              <div class="card card-cascade menuCard" (click)="toggleBills()"
+                style="border-right: 10px solid #ffffff ; cursor: pointer">
+                <div class="my-3 mx-4">
+                  <i><img src="../../../../assets/img/bill_payment1.svg" width="35rem" alt="bill payment"></i>
+                  <div class="menuText p-2">BILL PAYMENT</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 mb-3">
+              <div class="card card-cascade menuCard" [routerLink]="['/pages/cards']"
+                routerLinkActive="router-link-active" style="border-right: 10px solid #ffffff ; cursor: pointer">
+                <div class="my-3 mx-4">
+                  <i><img src="../../../../assets/img/cards1.svg" width="50rem" alt="cards"></i>
+                  <div class="menuText">CARDS</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 mb-3">
+              <div class="card card-cascade menuCard" [routerLink]="['/pages/transfer']" style="border-right: 10px solid #ffffff ; cursor: pointer">
+                <div class="my-3 mx-4">
+                  <i><img src="../../../../assets/img/transfer.svg" width="55rem" alt="transfer"></i>
+                  <!-- <i><img src="../../../../assets/img/transfer2.svg" width="30rem" alt="transfer"></i> -->
+
+                  <!-- <div class="menuText p-2">TRANSFER</div> -->
+                </div>
+              </div>
+            </div>
+            <!-- </div> -->
+
+
+
+            <!-- <div class="row mt-3 text-center mx-4"> -->
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 mb-3">
+              <div class="card card-cascade menuCard" [routerLink]="['/pages/fund-wallet']"
+                routerLinkActive="router-link-active" style="border-right: 10px solid #ffffff ; cursor: pointer">
+                <div class="my-3 mx-4">
+                  <i><img src="../../../../assets/img/wallet1.svg" width="50rem" alt="fund wallet"></i>
+                  <div class="menuText p-2">FUND WALLET</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 mb-3">
+              <div class="card card-cascade menuCard" [routerLink]="['/pages/transaction-history']"
+                routerLinkActive="router-link-active" style="border-right: 10px solid #ffffff ; cursor: pointer">
+                <div class="my-3 mx-4">
+                  <i><img src="../../../../assets/img/transactions.svg" width="85rem" alt="transaction"></i>
+                  <!-- <div class="menuText p-2">TRANSACTIONS</div> -->
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 mb-3">
+              <div [routerLink]="['/pages/refer-a-friend']" class="card card-cascade menuCard"
+                style="border-right: 10px solid #ffffff ; cursor: pointer">
+                <div class="my-3 mx-4">
+                  <i><img src="../../../../assets/img/referrals1.svg" width="40rem" alt="refferrals"></i>
+                  <div class="menuText p-2">REFERRALS</div>
+                </div>
+              </div>
+            </div>
+            <!-- </div> -->
+
+          </div>
+        </div>
+
+        <div *ngIf="showBills">
+          <!-- <div> -->
+          <div class="row mt-3 text-center mx-4">
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+              <div [routerLink]="['/pages/buy-airtime']" class="card card-cascade menuCard "
+                style="border-right: 10px solid #ffffff ; ">
+
+                <div class="my-3 mx-4">
+                  <i><img src="../../../../assets/img/airtime.svg" width="50px" alt="quick save"></i>
+                  <div class="menuText p-2">BUY AIRTIME</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+              <div [routerLink]="['/pages/buy-data']" class="card card-cascade menuCard"
+                style="border-right: 10px solid #ffffff; cursor: pointer;">
+                <div class="mx-4 my-3">
+                  <i><img src="../../../../assets/img/data.svg" width="50px" alt="loans"></i>
+                  <div class="menuText p-2">BUY DATA</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+              <div [routerLink]="['/pages/pay-bills']" class="card card-cascade menuCard"
+                style="border-right: 10px solid #ffffff ; cursor: pointer">
+                <div class="my-3 mx-4">
+                  <i><img src="../../../../assets/img/utility.svg" width="40px" alt="withdraw"></i>
+                  <div class="menuText p-2">UTILITIES</div>
+                </div>
+              </div>
+            </div>
+
+            <span (click)="toggleBills()" style="color: cadetblue; cursor: pointer; font-weight: bold;">Back</span>
+          </div>
+          <!-- </div> -->
+        </div>
+
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3 col-xs-12 col-sm-12 col-lg-3">
+        <div style="font-family: roboto;">
+          <div class="transHead">Transaction History</div>
+          <input type="text" placeholder="search by transfer type" class="mt-2"
+            (keyup)="transactionsTable($event.target.value)" style="width: 17rem">
+          <p *ngIf="!isTransaction">
+            No transactions
+          </p>
+
+          <div *ngIf="isTransaction" class="mt-3">
+            <div class="card trans mt-2" style="width: 17rem;" *ngFor="let trans of transactions"
+              (click)="[viewTransaction(trans), viewTransactionModal.show()]">
+              <div class="container transBody" style="cursor: pointer;">
+                <div class="mt-2">{{trans.xCreatedAt}}</div>
+                <div class="mt-2">{{trans.amount/100 | currency:'NGN':'symbol-narrow'}}</div>
+                <div class=" mt-2 mb-2">{{trans.narration | titlecase}}</div>
+
+              </div>
+            </div>
+            <a class="transFooter" [routerLink]="['/pages/transaction-history']">See More...</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- </div> -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div style="overflow-y: scroll" mdbModal #viewTransactionModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="viewTransactionModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel"><strong>Transaction Details</strong></h4>
+
+
+      </div>
+      <div class="modal-body">
+        <div [ngClass]="{ 'card card-cascade narrower': true, 'z-depth-0': false }">
+
+          <!-- <mdb-breadcrumb>
+                        <mdb-breadcrumb-item class="blue-text" (click)="viewStoreModal.hide()">{{storeName | titlecase}}
+                        </mdb-breadcrumb-item>
+                        <mdb-breadcrumb-item class="active">view-store</mdb-breadcrumb-item>
+                    </mdb-breadcrumb> -->
+          <div class="container-fluid">
+            <div class="row mb-3">
+              <div class="col-md-4"></div>
+
+              <!-- <div *ngIf="storeImgUrl" class="col-md-5 mb-4">
+                                <img style="border-radius: 100%;" [src]=storeImgUrl />
+                            </div> -->
+
+              <div class="col-md-3"> </div>
+
+            </div>
+
+
+            <div class="row">
+
+              <div class="col-md-3 col-example"><strong>ID</strong></div>
+              <div class="col-md-9 ">{{id}}</div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-md-3"><strong>Type</strong></div>
+              <div class="col-md-9">{{transactionType | titlecase}}</div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-md-3 "><strong>Amount</strong></div>
+              <div class="col-md-9 ">{{amount}}</div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-md-3"><strong>Channel</strong></div>
+              <div class="col-md-9">{{channel}}</div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-md-3"><strong>State</strong></div>
+              <div class="col-md-9">{{state}}</div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-md-3"><strong>Balance Before</strong></div>
+              <div class="col-md-9">{{balanceBefore}}</div>
+            </div>
+            <br />
+
+            <div class="row">
+              <div class="col-md-3"><strong>Balance After</strong></div>
+              <div class="col-md-9">{{balanceAfter}}</div>
+            </div>
+            <br />
+
+
+            <div class="row">
+              <div class="col-md-3"><strong>Source</strong></div>
+              <div class="col-md-9">{{source}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col-md-3"><strong>Date</strong></div>
+              <div class="col-md-9">{{transactionDate}}</div>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col-md-3"><strong>Narration</strong></div>
+              <div class="col-md-9">{{narration | titlecase}}</div>
+            </div>
+            <br>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+          (click)="viewTransactionModal.hide()" mdbWavesEffect>Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>

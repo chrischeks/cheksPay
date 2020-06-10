@@ -1,0 +1,58 @@
+.pageTitle{
+    font-weight: 500;
+font-size: 20px;
+line-height: 23px;
+letter-spacing: 0.05em;
+
+}
+
+.back{
+    font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 0.05em;
+        width: 88%!important;
+}
+
+
+table {
+    width: 100%;
+  }
+  
+  td, th {
+    text-align: left;
+    padding: 8px;
+    font-size: 14px;
+line-height: 16px;
+letter-spacing: 0.05em;
+
+color: #616161
+  }
+  
+  tr:nth-child(even) {
+    background-color: #DAFFE7;
+  }
+
+  .dateRange{
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+    border: 2px solid #E5E5E5;
+    border-radius: 5px;
+    color: #07A4D9;
+    cursor: pointer; 
+  }
+
+  .tableTitle{
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @media only screen and (max-width: 1366px) {
+    div.transSearch{
+      margin-left: 37rem!important;
+    }
+  }

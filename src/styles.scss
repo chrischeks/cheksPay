@@ -1,0 +1,301 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #fdffff !important;
+    font-family: "Roboto";
+    color: 616161;
+    font-style: normal;
+    margin:0;
+    padding: 0;
+}
+
+div.validation-error{
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545
+}
+
+.card.card-cascade .view.gradient-card-header {
+    padding: 1rem 1rem;
+    text-align: center;
+}
+
+.card.card-cascade h3, 
+.card.card-cascade h4{
+margin-bottom: 0px;
+}
+
+.blue-gradient {
+    background: -webkit-linear-gradient(50deg, #45cafc, #303f9f);
+    background: linear-gradient(40deg, #45cafc, #4285f4);
+}
+.invalid { border-bottom: 1px solid #330501; }
+.error-message .item-inner { border-bottom: 0 !important; }
+
+.yellow-gradient {
+    background: -webkit-linear-gradient(50deg, #000000, #9c7911);
+    background: linear-gradient(40deg, #000000, #9c7911);
+}
+.green-gradient {
+    background: -webkit-linear-gradient(50deg, #2BBBAD, #00695c);
+    background: linear-gradient(40deg, #2BBBAD, #00695c);
+}
+
+.datepickers .md-form, .inputs .md-form {
+    margin-top: 0 !important;
+}
+
+.modal-full-height.modal-bottom > .modal-content {
+    position: absolute !important;
+    bottom: 0;
+}
+.advert_long_bank{
+    min-height: 6em;
+    background: #a4a67d;
+    padding-top: 1.5em;
+}
+.advert_long_loan{
+    min-height: 6em;
+    background: #82a69e;
+    padding-top: 1.5em;
+}
+.section_left{
+min-height: 500px;
+padding-right:5px;
+
+}
+.section_right_bank{
+    min-height: 500px;
+    padding-left:5px;
+    // background: #edefdc;
+}
+.section_right_loan{
+    min-height: 500px;
+    padding-left:5px;
+    // background: #dcefea;
+}
+.menu_card_bank{
+width: 200px;
+height: 100px;
+background: #00A85B;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+color: #fff;
+}
+.menu_card_loan{
+width: 300px;
+height: 150px;
+background: #03544d;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+color: #fff;
+}
+
+
+a.menuColor{
+    color: #07A4D9;
+    margin-right: 285px;
+}
+
+.bill{
+    color: black;
+    font-size: larger;
+    font-weight: 400;
+}
+
+.customButton{
+background-color: #07A4D9;
+box-shadow: 0px 4px 4px rgba(39, 174, 96, 0.39);
+border-radius: 10px!important;
+color: #ffffff
+}
+
+
+
+.checkboxcontainer { position: relative; width: 100px; height: 100px; float: left; margin-left: 10px;  }
+.airtimecheckbox { position: absolute; bottom: 0px; right: 0px; }
+
+
+// .card {
+//     /* Add shadows to create the "card" effect */
+//     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+//     transition: 0.3s;
+//   }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* Add some padding inside the card container */
+  .container {
+    padding: 10px 16px;
+  }
+
+
+
+  .cardBackground{
+    background-color: #6ea8ff;
+    }
+
+
+    label .textFormat{
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        text-transform: capitalize;
+        
+        color: #FFFFFF;
+    }
+    
+    .loginTitle{
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 28px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        text-transform: uppercase;
+        
+        color: #FFFFFF;
+    }
+    
+    .loginSubtitle{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+    text-transform: capitalize;
+    
+    }
+    
+    
+    .registerBtn {
+        border: 3px solid #6ea8ff;
+        background-color: transparent;
+        color: black;
+        padding: 12px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      
+      .registerSuccess {
+        border-color: #6ea8ff;
+        color: #ffffff;
+        font-weight: bold;
+      }
+
+    //   .card {
+    //     background-color: rgba(255, 255, 255, 0.25);
+    // }
+
+    input::placeholder{
+        color: #c4c4c4;
+        padding-left: 10px;
+        }
+
+
+
+        /* Customize the label (the container) */
+.containerCheckbox {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .containerCheckbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .containerCheckbox:hover input ~ .checkmark {
+    background-color: #5e5656;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .containerCheckbox input:checked ~ .checkmark {
+    background-color: #07A4D9;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .containerCheckbox input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .containerCheckbox .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+
+  .checkboxText{
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+letter-spacing: 0.05em;
+}
+
+.labelText{
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #616161
+  
+  }
+
+  .modalLogo{
+    width: 12.5rem;
+    height:3.125rem
+  }
+
+.btn{
+  color:#ffffff!important
+}

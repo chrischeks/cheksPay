@@ -1,0 +1,53 @@
+<div class="container-fluid">
+
+
+  <div class="mt-4 flex-center">
+    <span class="">{{pageTitle}}</span>
+    <span style="margin-left: 49%;"><a class="" routerLink="/pages/{{page}}">Back</a></span>
+
+  </div>
+  <!-- <div > -->
+
+  <!-- </div> -->
+
+  <div class="form-group row flex-center">
+
+    <div class="form-card">
+
+      <form id="msform">
+        <p class="mb-4"><strong> Transaction Completed</strong></p>
+        <p>
+          <strong>RefId:</strong> {{refId}}
+        </p>
+
+        <div *ngIf="certURL">
+          <p>
+            <strong>Certificate Link:</strong> &nbsp; &nbsp;<a target="_blank"
+              title="Click to view certificate in another tab" [href]="certURL">View Certificate</a>
+          </p>
+        </div>
+
+        <div *ngIf="token">
+          <p>
+            <strong>Token:</strong> &nbsp; {{token}}
+          </p>
+        </div>
+
+        <div *ngIf="pin && serialNo">
+          <p>
+            <strong>Serial Number:</strong> &nbsp; {{serialNo}}
+          </p>
+          <p>
+            <strong>Pin:</strong> &nbsp; {{pin}}
+          </p>
+        </div>
+
+        <p>
+          <i class="fa fa-check text-success" style="font-size: 64px;"></i>
+        </p>
+
+      </form>
+    </div>
+  </div>
+
+</div>
