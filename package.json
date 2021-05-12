@@ -36,7 +36,7 @@
     "angular-epic-spinners": "^2.0.0",
     "c": "^0.1.0",
     "chalk": "^2.4.1",
-    "chart.js": "2.5.x",
+    "chart.js": "2.9.x",
     "ckeditor5-build-inline-with-base64-image-upload": "^15.0.0",
     "classlist.js": "1.1.x",
     "core-js": "2.4.x",
